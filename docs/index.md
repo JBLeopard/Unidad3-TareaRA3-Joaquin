@@ -46,4 +46,4 @@ Esta documentación recoge todas las operaciones realizadas durante el desarroll
 PPS Puesta en Producción Segura  
 IES Valle del Jerte Curso 2025–2026
 
-![](./imagenes/logo.png)
+![](./images/logo.png)
