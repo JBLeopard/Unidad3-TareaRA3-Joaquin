@@ -25,10 +25,11 @@ Esta documentación recoge todas las operaciones realizadas durante el desarroll
 
 | Archivo | Descripción |
 |---------|-------------|
-| `TrazadoVulnerabilidadGoAnywhere.md` | Seguimiento de la vulnerabilidad en GoAnywhere MFT de Fortra. |
-| `analisisVulnerabilidad.md` | Documentación y pruebas de ejecución de código en máquinas vulnerables. |
-| `ComprobacionRequisitosAplicacion.md` | Análisis de la comprobación de los requisitos de seguridad en la app lavadero. |
-| `conclusiones.md` | Reflexión final sobre los riesgos en las aplicaciones. |
+| `CreacionEntornoPrueba.md` | Seguimiento de la vulnerabilidad en GoAnywhere MFT de Fortra. |
+| `ActividadVulnerabilidadesDatosEntrada.md` | Documentación y pruebas de ejecución de código en máquinas vulnerables. |
+| `ActividadAutenticacion.md` | Reflexión final sobre los riesgos en las aplicaciones. |
+| `ActividadSeguridad.md` | Análisis de la comprobación de los requisitos de seguridad en la app lavadero. |
+| `EscaneoApp.md` | Reflexión final sobre los riesgos en las aplicaciones. |
 
 ---
 
