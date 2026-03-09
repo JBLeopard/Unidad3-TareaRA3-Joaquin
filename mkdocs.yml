@@ -18,7 +18,7 @@ nav:
   - Errores en la Seguridad y componentes vulnerables: ActividadSeguridad.md
   - Escaneo estático y dinámico de aplicación web: EscaneoApp.md
 # Carpeta donde están los archivos Markdown
-docs_dir: /.docs
+docs_dir: ./docs
 # Extensions Markdown
 markdown_extensions:
   - admonition
