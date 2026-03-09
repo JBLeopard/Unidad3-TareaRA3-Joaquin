@@ -57,10 +57,11 @@ jobs:
     # -------------------------------------------------------
     # PASO 4: CONSTRUIR Y DESPLEGAR LA DOCUMENTACIÓN
     # -------------------------------------------------------
-    - name: Deploy docs # Nombre descriptivo del paso.
-      # Comando que se ejecuta en la terminal.
-      # 1. 'mkdocs gh-deploy': Construye la documentación (generando los archivos HTML/CSS/JS).
-      # 2. '--force': Sube esos archivos generados y fuerza su publicación en la rama 'gh-pages'.
+    - name: Instalar MkDocs y Material
+      run: |
+        pip install mkdocs
+        pip install mkdocs-material
+    - name: Desplegar documentación en gh-pages
       run: mkdocs gh-deploy --force
       # Configuración de variables de entorno específicas para este paso.
       env:
