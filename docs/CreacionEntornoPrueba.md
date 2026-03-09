@@ -1,11 +1,8 @@
 # 1. Documentación sobre la creación del entorno de Pruebas
 
-En esta documentación se realiza la **creación del entorno de Pruebas**, navegando por las distintas listas y organismos oficiales de ciberseguridad.  
-Así pues, se trata de:  
+En esta documentación se realiza la **creación del entorno de Pruebas**, que consiste en crear un entorno de pruebas, un servidor LAMP, en el que posteriormente vamos a realizar posteriormente diferentes actividades en las que introduciremos archivos con vulnerabiliades, para ver cómo podemos corregirlas posteriormente.  
 
-- Conocer las principales listas de información sobre ciberseguridad (CVE, NVD, CWE, CAPEC, etc.).
-- Aprender a realizar el **trazado de una vulnerabilidad** desde una fuente informativa inicial hasta sus patrones de ataque.
-- Analizar el impacto, criticidad y debilidades asociadas a una vulnerabilidad real.
+-  Creo un escenario multicontenedor con LAMP. la encontramos en [https://github.com/sprintcube/docker-compose-lamp.git](https://github.com/sprintcube/docker-compose-lamp.git).
 
 **Vulnerabilidad analizada**
 
