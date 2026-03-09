@@ -4,6 +4,8 @@ En esta documentación se realiza la **creación del entorno de Pruebas**, que c
 
 -  Creo un escenario multicontenedor con LAMP. la encontramos en [https://github.com/sprintcube/docker-compose-lamp.git](https://github.com/sprintcube/docker-compose-lamp.git).
 
+
+![Lamp 1](./imagenes/apartado_uno/lamp1.png)
 **Vulnerabilidad analizada**
 
 - **Producto afectado:** GoAnywhere MFT  
