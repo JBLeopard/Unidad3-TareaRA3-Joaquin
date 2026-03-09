@@ -5,7 +5,7 @@ En esta documentación se realiza la **creación del entorno de Pruebas**, que c
 -  Creo un escenario multicontenedor con LAMP. la encontramos en [https://github.com/sprintcube/docker-compose-lamp.git](https://github.com/sprintcube/docker-compose-lamp.git).
 
 
-![Lamp 1](./images/apartado_uno/lamp1.png)
+![LAMP 1](./images/apartado_uno/lamp1.png)
 **Vulnerabilidad analizada**
 
 - **Producto afectado:** GoAnywhere MFT  
@@ -17,12 +17,79 @@ La vulnerabilidad permite a un atacante no autenticado acceder a funcionalidades
 
 ---
 
-## 1.1 Inicio del trazado (INCIBE)
+## 1.1 Instalación
 
-El trazado comienza a partir de un artículo publicado por INCIBE, donde se informa de una vulnerabilidad crítica que afecta a GoAnywhere MFT.  
-En dicho artículo se describe de forma general el problema y se proporcionan referencias externas para ampliar la información.
+Para la instalación de LAMP seguimos las instrucciones del repositorio.
 
-![INCIBE 1](./imagenes/apartado_uno/incibe1.png)
+![LAMP 2](./images/apartado_uno/lamp2.png)
+
+-  Muestra de mi fichero .emv
+`sample.env`
+```
+# Please Note:
+# In PHP Versions <= 7.4 MySQL8 is not supported due to lacking pdo support
+
+# To determine the name of your containers
+COMPOSE_PROJECT_NAME=lamp
+
+# Possible values: php54, php56, php71, php72, php73, php74, php8, php81, php82, php83
+PHPVERSION=php83
+DOCUMENT_ROOT=./www
+APACHE_DOCUMENT_ROOT=/var/www/html
+VHOSTS_DIR=./config/vhosts
+APACHE_LOG_DIR=./logs/apache2
+PHP_INI=./config/php/php.ini
+SSL_DIR=./config/ssl
+
+# PHPMyAdmin
+UPLOAD_LIMIT=512M
+MEMORY_LIMIT=512M
+
+# Xdebug
+XDEBUG_LOG_DIR=./logs/xdebug
+XDEBUG_PORT=9003
+#XDEBUG_PORT=9000
+
+# Possible values: mysql57, mysql8, mariadb103, mariadb104, mariadb105, mariadb106
+#
+# For Apple Silicon User: 
+# Please select Mariadb as Database. Oracle doesn't build their SQL Containers for the arm Architecure
+
+DATABASE=mysql8
+MYSQL_INITDB_DIR=./config/initdb
+MYSQL_DATA_DIR=./data/mysql
+MYSQL_LOG_DIR=./logs/mysql
+
+# If you already have the port 80 in use, you can change it (for example if you have Apache)
+HOST_MACHINE_UNSECURE_HOST_PORT=80
+
+# If you already have the port 443 in use, you can change it (for example if you have Apache)
+HOST_MACHINE_SECURE_HOST_PORT=443
+
+# If you already have the port 3306 in use, you can change it (for example if you have MySQL)
+HOST_MACHINE_MYSQL_PORT=3306
+
+# If you already have the port 8080 in use, you can change it (for example if you have PMA)
+HOST_MACHINE_PMA_PORT=8080
+HOST_MACHINE_PMA_SECURE_PORT=8443
+
+# If you already has the port 6379 in use, you can change it (for example if you have Redis)
+HOST_MACHINE_REDIS_PORT=6379
+
+# MySQL root user password
+MYSQL_ROOT_PASSWORD=tiger
+
+# Database settings: Username, password and database name
+#
+# If you need to give the docker user access to more databases than the "docker" db 
+# you can grant the privileges with phpmyadmin to the user.
+MYSQL_USER=docker
+MYSQL_PASSWORD=docker
+MYSQL_DATABASE=docker
+```
+![LAMP 3](./images/apartado_uno/lamp3.png)
+-  Muestra de mi fichero docker ![LAMP 2](./images/apartado_uno/lamp2.png)
+
 ![INCIBE 2](./imagenes/apartado_uno/incibe2.png)
 
 ---
