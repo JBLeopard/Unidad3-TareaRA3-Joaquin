@@ -1,0 +1,30 @@
+# Configuración del sitio
+site_name: "Unidad3-TareaRA3-Joaquin"
+site_description: "Documentación de la actividad de la Unidad 3"
+site_author: "JBLeopard"
+# Tema
+theme:
+  name: material
+  language: es
+  palette:
+    primary: indigo
+    accent: cyan
+# Menú navegación
+nav:
+  - Inicio: index.md
+  - Creación del entorno de Pruebas: CreacionEntornoPrueba.md
+  - Vulnerabilidades de inyección de datos de entrada: ActividadVulnerabilidadesDatosEntrada.md
+  - Autenticación, vulnerabilidades de gestión de sesiones, protección de datos sensibles o Control de acceso: ActividadAutenticacion.md
+  - Errores en la Seguridad y componentes vulnerables: ActividadSeguridad.md
+  - Escaneo estático y dinámico de aplicación web: EscaneoApp.md
+# Carpeta donde están los archivos Markdown
+docs_dir: docs
+# Extensions Markdown
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - codehilite
+  - footnotes
+  - def_list
