@@ -1,6 +1,6 @@
 # 2. Documentación de vulnerabilidades de inyección de datos de entrada
 
-En esta documentación se realiza la **creación del entorno de Pruebas**, que consiste en crear un entorno de pruebas, un servidor LAMP, en el que posteriormente vamos a realizar posteriormente diferentes actividades en las que introduciremos archivos con vulnerabiliades, para ver cómo podemos corregirlas posteriormente.  
+En esta documentación se realiza la **Explotación y Mitigación de Cross-Site Scripting (XSS)**, que consiste en crear un entorno de pruebas, un servidor LAMP, en el que posteriormente vamos a realizar posteriormente diferentes actividades en las que introduciremos archivos con vulnerabiliades, para ver cómo podemos corregirlas posteriormente.  
 
 -  Creo un escenario multicontenedor con LAMP. la encontramos en [https://github.com/sprintcube/docker-compose-lamp.git](https://github.com/sprintcube/docker-compose-lamp.git).
 
