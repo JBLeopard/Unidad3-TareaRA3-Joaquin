@@ -92,13 +92,18 @@ MYSQL_PASSWORD=docker
 MYSQL_DATABASE=docker
 ```
 ![EMV](./images/apartado_uno/emv.png)
--  Muestra de mi fichero docker ![DOCKER](./images/apartado_uno/dockercompose.png)
 
-![INCIBE 2](./imagenes/apartado_uno/incibe2.png)
+
+-  Muestra de mi fichero docker
+
+
+![DOCKER](./images/apartado_uno/dockercompose.png)
+
+![LOCALHOST](./images/apartado_uno/localhost.png)
 
 ---
 
-## 1.2 Web oficial del fabricante (Fortra)
+## 1.2 Scripts
 
 Desde el artículo de INCIBE se accede a la web oficial del fabricante, donde se publica el aviso de seguridad correspondiente.
 
@@ -108,12 +113,11 @@ En esta página se detallan:
 - Las versiones afectadas  
 - Las medidas de mitigación y parches disponibles  
 
-![FORTRA 1](./imagenes/apartado_uno/fortra1.png)
-![FORTRA 2](./imagenes/apartado_uno/fortra2.png)
+![SCRIPTS](./images/apartado_uno/scripts.png)
 
 ---
 
-## 1.3 Identificación del CVE y análisis
+## 1.3 Prueba funcionamiento scripts
 
 En la información proporcionada por el fabricante se identifica el identificador CVE asignado a la vulnerabilidad.  
 Este identificador permite realizar el seguimiento oficial del fallo de seguridad en las diferentes bases de datos.  
@@ -123,72 +127,11 @@ Accedemos a la página oficial de **cve.org**, donde se muestra la información 
 - Referencias oficiales  
 - Fecha de publicación  
 
-![CVE 1](./imagenes/apartado_uno/cve1.png)
-![CVE 2](./imagenes/apartado_uno/cve2.png)
+![PSCRIPT1](./images/apartado_uno/pruebasscript1.png)
+![PSCRIPT2](./images/apartado_uno/pruebasscript2.png)
 
 ---
 
-## 1.4 Consulta en la NVD (NIST)
-
-A continuación se consulta la **National Vulnerability Database (NVD)** mantenida por el NIST, donde se amplía la información técnica.
-
-![NVD 1](./imagenes/apartado_uno/nvd1.png)
-
-En la NVD se muestra la puntuación **CVSS**, que indica el nivel de riesgo de la vulnerabilidad.
-
-- **Puntuación CVSS:** 9.8 Crítica  
-- **Vector CVSS:** Permite analizar los factores utilizados para calcular la puntuación  
-
-![NVD 2](./imagenes/apartado_uno/nvd2.png)
-
-También podemos ver las versiones de softwate a las que afecta:  
-
-![NVD 3](./imagenes/apartado_uno/nvd3.png)
-![NVD 4](./imagenes/apartado_uno/nvd4.png)
-
----
-
-## 1.5 Análisis de la CWE
-
-Desde la NVD se identifican las **debilidades (CWE)** explotadas por la vulnerabilidad.  
-Accedemos a la página oficial de **cwe.mitre.org** para analizar en detalle la debilidad principal.  
-En esta sección se describe:  
-
-- En qué consiste la debilidad  
-- Lenguajes y tecnologías afectadas  
-- Posibles mitigaciones  
-
-![CWE 1](./imagenes/apartado_uno/cwe1.png)
-
-Se observa la relación de la debilidad con otras CWE, mostrando jerarquías de debilidades padre e hijas.
-
-![CWE 2](./imagenes/apartado_uno/cwe2.png)
-
-También una lista de CVE relacionadas.
-
-![CWE 3](./imagenes/apartado_uno/cwe3.png)
-
-Patrones de ataque (CAPEC)  
-Desde la información de la CWE se accede a los **patrones de ataque (CAPEC)** que pueden explotar esta debilidad.  
-
-![CWE 4](./imagenes/apartado_uno/cwe4.png)
-
----
-
-## 1.6 Análisis del patrón de ataque CAPEC
-
-En la web oficial de **capec.mitre.org** se analiza el patrón de ataque identificado.  
-Se detallan:  
-
-- Descripción del ataque  
-- Flujo de ejecución  
-- Requisitos previos  
-- Consecuencias  
-- Posibles mitigaciones  
-
-![CAPEC](./imagenes/apartado_uno/capec.png)
-
----
 
 ## 1.7 Descarga del registro CVE en formato JSON
 
