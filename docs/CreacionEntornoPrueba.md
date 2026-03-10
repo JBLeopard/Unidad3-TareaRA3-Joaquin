@@ -23,6 +23,10 @@ Para la instalación de LAMP seguimos las instrucciones del repositorio.
 
 ![LAMP 2](./images/apartado_uno/lamp2.png)
 
+-  Creo carpeta
+
+![COPIA](./images/apartado_uno/carpeta.png)
+
 -  Muestra de mi fichero .emv
 `sample.env`
 ```
