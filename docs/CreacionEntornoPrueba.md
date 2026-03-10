@@ -28,20 +28,11 @@ Para la instalación de LAMP seguimos las instrucciones del repositorio.
 ![COPIA](./images/apartado_uno/carpeta.png)
 
 -  Muestra de mi fichero .emv
+
+![EMV](./images/apartado_uno/emv.png)
+
 `sample.env`
 ```
-# Please Note:
-# In PHP Versions <= 7.4 MySQL8 is not supported due to lacking pdo support
-
-# To determine the name of your containers
-COMPOSE_PROJECT_NAME=lamp
-
-# Possible values: php54, php56, php71, php72, php73, php74, php8, php81, php82, php83
-PHPVERSION=php83
-DOCUMENT_ROOT=./www
-APACHE_DOCUMENT_ROOT=/var/www/html
-VHOSTS_DIR=./config/vhosts
-APACHE_LOG_DIR=./logs/apache2
 PHP_INI=./config/php/php.ini
 SSL_DIR=./config/ssl
 
@@ -63,6 +54,7 @@ DATABASE=mysql8
 MYSQL_INITDB_DIR=./config/initdb
 MYSQL_DATA_DIR=./data/mysql
 MYSQL_LOG_DIR=./logs/mysql
+MYSQL_CNF=./config/mysql/my.cnf
 
 # If you already have the port 80 in use, you can change it (for example if you have Apache)
 HOST_MACHINE_UNSECURE_HOST_PORT=80
@@ -91,13 +83,88 @@ MYSQL_USER=docker
 MYSQL_PASSWORD=docker
 MYSQL_DATABASE=docker
 ```
-![EMV](./images/apartado_uno/emv.png)
-
 
 -  Muestra de mi fichero docker
 
 
 ![DOCKER](./images/apartado_uno/dockercompose.png)
+
+
+`docker-compose.yml`
+```
+services:
+  webserver:
+    build:
+      context: ./bin/${PHPVERSION}
+    container_name: "${COMPOSE_PROJECT_NAME}-${PHPVERSION}"
+    restart: "always"
+    ports:
+      - "${HOST_MACHINE_UNSECURE_HOST_PORT}:80"
+      - "${HOST_MACHINE_SECURE_HOST_PORT}:443"
+    links:
+      - database
+    volumes:
+      - ${DOCUMENT_ROOT-./www}:/var/www/html:rw
+      - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
+      - ${SSL_DIR-./config/ssl}:/etc/apache2/ssl/
+      - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
+      - ${LOG_DIR-./logs/apache2}:/var/log/apache2
+      - ${XDEBUG_LOG_DIR-./logs/xdebug}:/var/log/xdebug
+    environment:
+      APACHE_DOCUMENT_ROOT: ${APACHE_DOCUMENT_ROOT-/var/www/html}
+      PMA_PORT: ${HOST_MACHINE_PMA_PORT}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      HOST_MACHINE_MYSQL_PORT: ${HOST_MACHINE_MYSQL_PORT}
+      XDEBUG_CONFIG: "client_host=host.docker.internal remote_port=${XDEBUG_PORT}"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  database:
+    build:
+      context: "./bin/${DATABASE}"
+    container_name: "${COMPOSE_PROJECT_NAME}-${DATABASE}"
+    restart: "always"
+    ports:
+      - "127.0.0.1:${HOST_MACHINE_MYSQL_PORT}:3306"
+    volumes:
+      - ${MYSQL_INITDB_DIR-./config/initdb}:/docker-entrypoint-initdb.d
+      - ${MYSQL_DATA_DIR-./data/mysql}:/var/lib/mysql
+      - ${MYSQL_LOG_DIR-./logs/mysql}:/var/log/mysql
+      - ${MYSQL_CNF-./config/mysql/my.cnf}:/etc/my.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: "${COMPOSE_PROJECT_NAME}-phpmyadmin"
+    links:
+      - database
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      UPLOAD_LIMIT: ${UPLOAD_LIMIT}
+      MEMORY_LIMIT: ${MEMORY_LIMIT}
+    ports:
+      - "${HOST_MACHINE_PMA_PORT}:80"
+      - "${HOST_MACHINE_PMA_SECURE_PORT}:443"
+    volumes:
+      - /sessions
+      - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
+  redis:
+    container_name: "${COMPOSE_PROJECT_NAME}-redis"
+    image: redis:latest
+    ports:
+      - "127.0.0.1:${HOST_MACHINE_REDIS_PORT}:6379"
+```
 
 ![LOCALHOST](./images/apartado_uno/localhost.png)
 
@@ -115,6 +182,81 @@ En esta página se detallan:
 
 ![SCRIPTS](./images/apartado_uno/scripts.png)
 
+`guardarConfiguraciones.sh`
+```
+#!/bin/bash
+#  guardarConfiguraciones.sh Directorio_Configuracion_a_Guardar
+# Con este script guardamos las configuraciones actuales del  Escenario LAMP
+
+if [ $# -ne 1 ]; then
+    echo "Introduce la ruta de la carpeta donde quieres guardar la configuración existente"
+    echo "Uso: guardarConfiguraciones.sh ruta_a_Directorio_Configuracion"
+    echo "Se creará la carpeta con  el ruta y nombre indicados."
+    exit
+fi
+
+if [ ! -d configuracionOriginal ]; then
+    echo "no estas en el directorio correcto."
+    echo "Situate en la carpeta del repositorio, en tu directorio debe de encontrarse la carpeta configuracionOriginal"
+    exit
+fi
+
+# Comprobamos que la carpeta no exista ya
+if [ -d "$1" ]; then
+    echo "La carpeta $1 ya existe. Por favor, elige otro nombre o elimina la carpeta existente."
+    exit
+
+fi
+# solicitamos confirmación al usuario sobre la acción a realizar
+read -r -p "¿Estás seguro de que quieres guardar la configuración actual? (s/n): " confirmation
+case "$confirmation" in
+    [sS])
+        echo "Guardando configuración..."
+        ;;
+    [nN])
+        echo "Acción de guardar datos cancelada."
+        exit 0
+        ;;
+    *)
+        echo "Opción no válida. Acción cancelada."
+        exit 1
+        ;;
+esac
+
+# Creamos la carpeta especificada y copiamos los datos y configuraciones indicados en dicha carpeta.
+mkdir -p "$1"
+echo "Configuración guardada correctamente en la carpeta $1"
+```
+`restaurarConfiguracionOriginal.sh`
+```
+#!/bin/bash
+# restaurarConfiguracionOriginal.sh Directorio_Configuracion_a_Guardar
+# Con este script restauramos la configuración original del  Escenario LAMP
+# pero primero guardamos
+
+if [ $# -ne 0 ]; then
+
+    echo "Uso: restaurarConfiguracionOriginal.sh"
+    echo "Script para restaurar la configuración original del entorno de prueba."
+    exit
+fi
+
+if [ ! -d configuracionOriginal ]; then
+    echo "no estas en el directorio correcto."
+    echo "Situate en la carpeta del repositorio, en tu directorio debe de encontrarse la carpeta configuracionOriginal"
+    exit
+fi
+read -r -p "¿Estás seguro de que quieres restaurar la configuración original? Se perderán los datos actuales. (s/n): " confirmation
+if [[ $confirmation != "s" ]]; then
+    echo "Restauración cancelada."
+    exit
+fi
+# Borramos los datos y configuraciones existentes
+rm -rf config/* data/* logs/* www/* 
+# Copiamos los datos y configuraciones por defecto
+cp -rp configuracionOriginal/config configuracionOriginal/data configuracionOriginal/logs configuracionOriginal/www ./
+echo "Configuración por defecto restaurada correctamente"
+```
 ---
 
 ## 1.3 Prueba funcionamiento scripts
