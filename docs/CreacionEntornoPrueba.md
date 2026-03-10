@@ -31,7 +31,7 @@ Para la instalación de LAMP seguimos las instrucciones del repositorio.
 
 ![EMV](./images/apartado_uno/emv.png)
 
-`sample.env`
+**`sample.env`**
 ```
 PHP_INI=./config/php/php.ini
 SSL_DIR=./config/ssl
@@ -90,7 +90,7 @@ MYSQL_DATABASE=docker
 ![DOCKER](./images/apartado_uno/dockercompose.png)
 
 
-`docker-compose.yml`
+**`docker-compose.yml`**
 ```
 services:
   webserver:
@@ -182,7 +182,7 @@ En esta página se detallan:
 
 ![SCRIPTS](./images/apartado_uno/scripts.png)
 
-`guardarConfiguraciones.sh`
+**`guardarConfiguraciones.sh`**
 ```
 #!/bin/bash
 #  guardarConfiguraciones.sh Directorio_Configuracion_a_Guardar
@@ -227,7 +227,7 @@ esac
 mkdir -p "$1"
 echo "Configuración guardada correctamente en la carpeta $1"
 ```
-`restaurarConfiguracionOriginal.sh`
+**`restaurarConfiguracionOriginal.sh`**
 ```
 #!/bin/bash
 # restaurarConfiguracionOriginal.sh Directorio_Configuracion_a_Guardar
