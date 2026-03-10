@@ -88,7 +88,7 @@ MYSQL_PASSWORD=docker
 MYSQL_DATABASE=docker
 ```
 ![LAMP 3](./images/apartado_uno/lamp3.png)
--  Muestra de mi fichero docker ![LAMP 2](./images/apartado_uno/lamp2.png)
+-  Muestra de mi fichero docker ![LAMP 2](./images/apartado_uno/docker.png)
 
 ![INCIBE 2](./imagenes/apartado_uno/incibe2.png)
 
