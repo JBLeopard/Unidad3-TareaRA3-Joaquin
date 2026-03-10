@@ -127,8 +127,8 @@ Accedemos a la página oficial de **cve.org**, donde se muestra la información 
 - Referencias oficiales  
 - Fecha de publicación  
 
-![PSCRIPT1](./images/apartado_uno/pruebasscript1.png)
-![PSCRIPT2](./images/apartado_uno/pruebasscript2.png)
+![PSCRIPT1](./images/apartado_uno/pruebascript1.png)
+![PSCRIPT2](./images/apartado_uno/pruebascript2.png)
 
 ---
 
