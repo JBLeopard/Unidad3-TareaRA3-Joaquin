@@ -6,14 +6,6 @@ En esta documentación se realiza la **creación del entorno de Pruebas**, que c
 
 
 ![LAMP 1](./images/apartado_uno/lamp1.png)
-**Vulnerabilidad analizada**
-
-- **Producto afectado:** GoAnywhere MFT  
-- **Fabricante:** Fortra  
-- **Tipo:** Omisión de autenticación  
-- **Gravedad:** Crítica
-
-La vulnerabilidad permite a un atacante no autenticado acceder a funcionalidades internas de la aplicación.
 
 ---
 
@@ -172,14 +164,6 @@ services:
 
 ## 1.2 Scripts
 
-Desde el artículo de INCIBE se accede a la web oficial del fabricante, donde se publica el aviso de seguridad correspondiente.
-
-En esta página se detallan:
-
-- La descripción técnica de la vulnerabilidad  
-- Las versiones afectadas  
-- Las medidas de mitigación y parches disponibles  
-
 ![SCRIPTS](./images/apartado_uno/scripts.png)
 
 **`guardarConfiguraciones.sh`**
@@ -261,31 +245,7 @@ echo "Configuración por defecto restaurada correctamente"
 
 ## 1.3 Prueba funcionamiento scripts
 
-En la información proporcionada por el fabricante se identifica el identificador CVE asignado a la vulnerabilidad.  
-Este identificador permite realizar el seguimiento oficial del fallo de seguridad en las diferentes bases de datos.  
-Accedemos a la página oficial de **cve.org**, donde se muestra la información básica del CVE:
-
-- Descripción de la vulnerabilidad  
-- Referencias oficiales  
-- Fecha de publicación  
-
 ![PSCRIPT1](./images/apartado_uno/pruebascript1.png)
 ![PSCRIPT2](./images/apartado_uno/pruebascript2.png)
-
----
-
-
-## 1.7 Descarga del registro CVE en formato JSON
-
-Finalmente, desde **cve.org** se accede al **registro CVE en formato JSON**, utilizado para el tratamiento automatizado de la información de vulnerabilidades.  
-Este registro contiene información estructurada sobre:  
-
-- CVE  
-- CWE  
-- CPE  
-- CAPEC  
-- Referencias oficiales
-
-[CVE-2024-0204.json](https://github.com/JBLeopard/Unidad2-TareaRA2-Joaquin/blob/main/docs/CVE-2024-0204.json)
 
 ---
