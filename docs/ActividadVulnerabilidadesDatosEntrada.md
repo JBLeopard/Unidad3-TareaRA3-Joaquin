@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ---
 
 ### 2.1.1 Explotación 1 - XSS clásico
-
+**Vulnerabilidad analizada**
 ```
 <script>alert('Vulnerabilidad XSS!')</script>
 <h2 style="color:red;">Explotación 1</h2>
