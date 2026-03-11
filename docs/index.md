@@ -17,7 +17,7 @@
    
 ---
 
-Esta documentación recoge todas las operaciones realizadas durante el desarrollo de la tarea de la Unidad 2 del módulo **Puesta en Producción Segura (PPS)**.
+Esta documentación recoge todas las operaciones realizadas durante el desarrollo de la tarea de la Unidad 3 del módulo **Puesta en Producción Segura (PPS)**.
 
 ---
 
