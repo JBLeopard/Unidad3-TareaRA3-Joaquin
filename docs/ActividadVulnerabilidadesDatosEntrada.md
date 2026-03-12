@@ -1,12 +1,19 @@
 # 2. Documentación de vulnerabilidades de inyección de datos de entrada
 
-En esta documentación se realiza la **Explotación y Mitigación de Cross-Site Scripting (XSS)**.  
+En esta documentación se analiza la vulnerabilidad **Cross-Site Scripting (XSS)** presente en una aplicación web desarrollada en PHP.  
+
+Se muestra:  
+
+- El **código vulnerable**.
+- La **explotación de la vulnerabilidad**.
+- La **implementación de mitigaciones**.
+- Una **batería de pruebas** para verificar la solución.
 
 ---
 
 ## 2.1 Código vulnerable
 
-A continuación se muestra el contenido del archivo comment.php que es vulnberable.
+A continuación muestro el contenido del archivo que voy a usar `comment.php`, el cual presenta una vulnerabilidad de **Cross-Site Scripting (XSS)** debido a que los datos introducidos por el usuario se muestran en la página sin ningún tipo de validación ni sanitización.
 
 ![PHP](./images/apartado_dos/commentphp.png)
 
@@ -49,6 +56,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 </html>
 ```
+
+**Explicación de la vulnerabilidad**  
+
+- La aplicación recibe un comentario enviado por el usuario y lo muestra directamente en la página sin aplicar ningún mecanismo de seguridad.
+
+```php
+$comment = $_POST['comment'];
+```
+
+
+
+
 ---
 
 ### 2.1.1 Explotación 1 - XSS clásico
