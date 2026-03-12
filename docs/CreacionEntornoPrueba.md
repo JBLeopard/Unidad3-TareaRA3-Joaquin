@@ -4,7 +4,7 @@ En esta documentación se describe el proceso de **creación de un entorno de pr
 
 Para ello despliego un **escenario multicontenedor** utilizando Docker, que incluye los servicios necesarios para un entorno LAMP (Linux, Apache, MySQL y PHP).
 
--  Creo un escenario multicontenedor basasdo en LAMP que encontramos en el siguiente repositorio: (https://github.com/sprintcube/docker-compose-lamp.git).
+-  Creo un escenario multicontenedor basasdo en LAMP que encontramos en el siguiente repositorio: [LAMP 1](https://github.com/sprintcube/docker-compose-lamp.git).
 
 ![LAMP 1](./images/apartado_uno/lamp1.png)
 
