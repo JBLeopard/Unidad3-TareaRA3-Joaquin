@@ -174,6 +174,17 @@ Estos scripts resultan útiles cuando se realizan prácticas de seguridad, ya qu
 
 ![SCRIPTS](./images/apartado_uno/scripts.png)
 
+### 1.2.1 Script para guardar configuraciones
+
+El script `guardarConfiguraciones.sh` permite guardar el estado actual del entorno (configuraciones, datos, logs y archivos web) dentro de una carpeta especificada por el usuario.  
+
+Antes de realizar la copia se realizan varias comprobaciones:  
+
+- Verifica que se haya indicado un nombre de carpeta.
+- Comprueba que existe el directorio `configuracionOriginal`.
+- Comprueba que la carpeta destino no exista previamente.
+- Solicita confirmación al usuario antes de proceder.  
+
 **`guardarConfiguraciones.sh`**
 ```
 #!/bin/bash
