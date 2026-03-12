@@ -121,7 +121,7 @@ Un atacante podría redirigir a los usuarios a:
 - Páginas con malware.
 - Páginas con actualizaciones falsas del sistema.
 
-En mi caso se utilizo [fakeupdate.net/](https://fakeupdate.net/win10ue/), una página que simula una actualización falsa de Windows 10.  
+En mi caso se utilizo [fakeupdate.net](https://fakeupdate.net/win10ue/), una página que simula una actualización falsa de Windows 10.  
 
 ---
 
