@@ -260,19 +260,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ```
 ---
 
-## 2.2.1 MITIGACIÓN 1 — Uso de filter_input()
+### 2.2.1 MITIGACIÓN 1 — Uso de filter_input()
 
 **`comment.php`**
 
 ---
 
-## 2.2.2 MITIGACIÓN 2 — Validación de entrada
+### 2.2.2 MITIGACIÓN 2 — Validación de entrada
 
 **`comment.php`**
 
 ---
 
-## 2.2.3 MITIGACIÓN 3 — Sanitización con htmlspecialchars()
+### 2.2.3 MITIGACIÓN 3 — Sanitización con htmlspecialchars()
 
 **`comment.php`**
 
