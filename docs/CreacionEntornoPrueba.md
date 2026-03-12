@@ -2,7 +2,7 @@
 
 En esta documentación se describe el proceso de **creación de un entorno de prueba**. Este entorno se utilizará posteriormente para realizar distintas actividades relacionadas con la **introducción y análisis de vulnerabilidades**, con el objetivo de aprender a detectarlas y corregirlas.
 
-Para ello se despliega un **escenario multicontenedor** utilizando Docker, que incluye los servicios necesarios para un entorno LAMP (Linux, Apache, MySQL y PHP).
+Para ello despliego un **escenario multicontenedor** utilizando Docker, que incluye los servicios necesarios para un entorno LAMP (Linux, Apache, MySQL y PHP).
 
 -  Creo un escenario multicontenedor basasdo en LAMP que encontramos en el siguiente repositorio: [https://github.com/sprintcube/docker-compose-lamp.git]
 
