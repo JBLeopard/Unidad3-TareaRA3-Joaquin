@@ -168,6 +168,10 @@ services:
 
 ## 1.2 Scripts
 
+Para facilitar la gestión del entorno de pruebas se crean dos scripts que permiten **guardar y restaurar configuraciones** del escenario LAMP.  
+
+Estos scripts resultan útiles cuando se realizan prácticas de seguridad, ya que permiten **volver rápidamente a un estado inicial del entorno**.
+
 ![SCRIPTS](./images/apartado_uno/scripts.png)
 
 **`guardarConfiguraciones.sh`**
