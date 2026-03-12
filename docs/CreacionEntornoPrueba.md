@@ -12,11 +12,11 @@ Para ello despliego un **escenario multicontenedor** utilizando Docker, que incl
 
 ## 1.1 Instalación
 
-Para la instalación de LAMP seguimos las instrucciones del repositorio.
+Para realizar la instalación del entorno LAMP se siguen las instrucciones proporcionadas en el repositorio.
 
 ![LAMP 2](./images/apartado_uno/lamp2.png)
 
--  Creo carpeta
+-  En primer lugar se crea una carpeta de trabajo donde se almacenará el proyecto.
 
 ![COPIA](./images/apartado_uno/carpeta.png)
 
