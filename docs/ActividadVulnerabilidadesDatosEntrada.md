@@ -1,19 +1,6 @@
 # 2. Documentación de vulnerabilidades de inyección de datos de entrada
 
-En esta documentación se realiza la **Explotación y Mitigación de Cross-Site Scripting (XSS)**, que consiste en crear un entorno de pruebas, un servidor LAMP, en el que posteriormente vamos a realizar posteriormente diferentes actividades en las que introduciremos archivos con vulnerabiliades, para ver cómo podemos corregirlas posteriormente.  
-
--  Creo un escenario multicontenedor con LAMP. la encontramos en [https://github.com/sprintcube/docker-compose-lamp.git](https://github.com/sprintcube/docker-compose-lamp.git).
-
-
-![LAMP 1](./images/apartado_uno/xlamp1.png)
-**Vulnerabilidad analizada**
-
-- **Producto afectado:** GoAnywhere MFT  
-- **Fabricante:** Fortra  
-- **Tipo:** Omisión de autenticación  
-- **Gravedad:** Crítica
-
-La vulnerabilidad permite a un atacante no autenticado acceder a funcionalidades internas de la aplicación.
+En esta documentación se realiza la **Explotación y Mitigación de Cross-Site Scripting (XSS)**.  
 
 ---
 
