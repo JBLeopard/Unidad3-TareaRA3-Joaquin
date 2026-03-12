@@ -281,6 +281,12 @@ echo "Configuración por defecto restaurada correctamente"
 
 ## 1.3 Prueba funcionamiento scripts
 
+Finalmente realizo una prueba de funcionamiento de los scripts creados para comprobar que operan correctamente.
+
+En primer lugar se ejecuta el script encargado de guardar la configuración actual del entorno, indicando el nombre de la carpeta donde se almacenará la copia, luego creo un archivo llamado `pps.html`.  
+
+Posteriormente ejectuo el script que permite restaurar la configuración original, comprobando que los archivos del entorno se restauran correctamente y se borra el archvo creado como muestro en las capturas.
+
 ![PSCRIPT1](./images/apartado_uno/pruebascript1.png)
 ![PSCRIPT2](./images/apartado_uno/pruebascript2.png)
 
