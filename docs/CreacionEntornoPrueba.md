@@ -8,8 +8,6 @@ Para ello despliego un **escenario multicontenedor** utilizando Docker, que incl
 
 ![LAMP 1](./images/apartado_uno/lamp1.png)
 
-(https://github.com/sprintcube/docker-compose-lamp.git)  
-
 ---
 
 ## 1.1 Instalación
@@ -18,7 +16,7 @@ Para realizar la instalación del entorno LAMP se siguen las instrucciones propo
 
 ![LAMP 2](./images/apartado_uno/lamp2.png)
 
--  En primer lugar se crea una carpeta de trabajo y otra que me sirva de backup donde se almacenará el proyecto.
+-  En primer lugar se crea una carpeta de trabajo y otra de backup que me sirva de backup donde se almacenará el proyecto.
 
 ![COPIA](./images/apartado_uno/carpeta.png)
 
@@ -79,7 +77,7 @@ MYSQL_PASSWORD=docker
 MYSQL_DATABASE=docker
 ```
 
--  Muestra de mi fichero docker
+-  Posteriormente se utiliza el archivo docker-compose.yml, que define los distintos servicios que forman el entorno de pruebas.
 
 
 ![DOCKER](./images/apartado_uno/dockercompose.png)
@@ -160,6 +158,9 @@ services:
     ports:
       - "127.0.0.1:${HOST_MACHINE_REDIS_PORT}:6379"
 ```
+
+- Una vez configurado el entorno, se inicia el escenario utilizando Docker Compose, lo que levanta automáticamente todos los contenedores necesarios.
+- Finalmente se comprueba que el servidor web funciona correctamente accediendo a **localhost** desde el navegador.
 
 ![LOCALHOST](./images/apartado_uno/localhost.png)
 
