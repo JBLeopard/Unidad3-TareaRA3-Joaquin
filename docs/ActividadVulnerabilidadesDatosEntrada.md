@@ -64,10 +64,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ```php
 $comment = $_POST['comment'];
 ```
+- Posteriormente se imprime directamente en el HTML:
 
-
-
-
+```php
+<p><?= $comment ?></p>
+```
+- Esto permite que un atacante introduzca código HTML o JavaScript que será ejecutado por el navegador del usuario, así es como funciona la vulnerabilidad **Cross-Site Scripting (XSS)**.
 ---
 
 ### 2.1.1 Explotación 1 - XSS clásico
@@ -76,10 +78,22 @@ A continuación se muestra la explotación 1.
 
 ![XPLOIT1](./images/apartado_dos/xploit1.png)
 
-```
+**Payload utilizado**
+
+```html
 <script>alert('Vulnerabilidad XSS!')</script>
 <h2 style="color:red;">Explotación 1</h2>
 ```
+**Explicación**
+
+- Este ataque inserta una etiqueta `<script>` en el campo de comentario.
+- Debido a que la aplicación no filtra ni escapa el contenido, el navegador interpreta el script como código ejecutable.
+
+**Resultado**
+
+- Cuando la página muestra el comentario, el navegador ejecuta el script y aparece una ventana emergente `(alert)`.
+- Esto confirma que la aplicación es vulnerable a XSS.
+
 ---
 
 ### 2.1.2 Explotación 2 - Redirección maliciosa
@@ -88,10 +102,27 @@ A continuación se muestra la explotación 2.
 
 ![XPLOIT2](./images/apartado_dos/xploit2.png)
 
-```
+**Payload utilizado**
+
+```html
 <script>window.location='https://fakeupdate.net/win10ue/'</script>
 <h2 style="color:red;">Explotación 2</h2>
 ```
+**Explicación**
+
+- Este ataque utiliza JavaScript para redirigir automáticamente al usuario a otra página web mediante: `window.location`.
+- Debido a la vulnerabilidad XSS, el script se ejecuta cuando la página muestra el comentario.
+
+**Impacto**  
+
+Un atacante podría redirigir a los usuarios a:
+
+- Páginas de phishing.
+- Páginas con malware.
+- Páginas con actualizaciones falsas del sistema.
+
+En mi caso se utilizo [fakeupdate.net/](https://fakeupdate.net/win10ue/), una página que simula una actualización falsa de Windows 10.  
+
 ---
 
 ### 2.1.3 Explotación 3 - Robo de cookies (Cookie Stealing)
