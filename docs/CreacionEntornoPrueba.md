@@ -174,6 +174,8 @@ Estos scripts resultan útiles cuando se realizan prácticas de seguridad, ya qu
 
 ![SCRIPTS](./images/apartado_uno/scripts.png)
 
+---
+
 ### 1.2.1 Script para guardar configuraciones
 
 El script `guardarConfiguraciones.sh` permite guardar el estado actual del entorno (configuraciones, datos, logs y archivos web) dentro de una carpeta especificada por el usuario.  
@@ -230,6 +232,21 @@ esac
 mkdir -p "$1"
 echo "Configuración guardada correctamente en la carpeta $1"
 ```
+---
+
+### 1.2.2 Script para restaurar la configuración original
+
+El script `restaurarConfiguracionOriginal.sh` permite restaurar el entorno de pruebas al estado original utilizando la carpeta `configuracionOriginal`.   
+
+El script realiza las siguientes acciones:  
+
+1. Comprueba que no se han pasado parámetros.
+2. Verifica que exista el directorio `configuracionOriginal`.
+3. Solicita confirmación al usuario antes de continuar.
+4. Elimina los archivos actuales de configuración, datos, logs y contenido web.
+5. Copia nuevamente los archivos originales desde la carpeta de respaldo.
+
+
 **`restaurarConfiguracionOriginal.sh`**
 ```
 #!/bin/bash
