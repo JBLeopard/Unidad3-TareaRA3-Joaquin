@@ -129,6 +129,18 @@ En mi caso utilizo [fakeupdate.net](https://fakeupdate.net/win10ue/), una de sus
 
 A continuación se muestra la explotación 3.
 
+- Usando la herramienta **PHP Cookie Stealer** que es una herramienta que puede usarse en pruebas de penetración y ataques XSS para robar cookies de navegador a las víctimas. La herramienta funciona configurando un servidor que escucha las solicitudes entrantes con un valor de cookie específico. Cuando se recibe una solicitud, la herramienta registra diversas informaciones sobre la petición, incluyendo la fecha y hora, la dirección IP del cliente, el agente de usuario, el referente y el valor de las cookies, en un archivo.
+
+- Esta herramienta puede ser utilizada por atacantes para robar información sensible, como tokens de sesión y credenciales de autenticación, de usuarios desprevenidos. Robando las cookies del navegador de un usuario, un atacante puede obtener acceso no autorizado a la cuenta del usuario y realizar acciones en su nombre.
+
+- En esta explotación se demuestra cómo una vulnerabilidad Cross-Sies Scripting (XSS) puede utilizarse para robar cookies de sesión de los usuarios.
+
+- Las cookies son pequeños fragmentos de información que los sitios web almacenan en el navegador del usuario para mantener el estado de la sesión, por ejemplo para recordar que un usuario ha iniciado sesión en una aplicación.
+
+- Si un atacante consigue acceder a estas cookies, podría suplantar la identidad del usuario sin necesidad de conocer su contraseña.
+
+
+
 ![XPLOIT3](./images/apartado_dos/xploit3.png)
 
 **`./www/cookieStealer/index.php`**
