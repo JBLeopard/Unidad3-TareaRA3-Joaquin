@@ -16,11 +16,11 @@ Para realizar la instalación del entorno LAMP se siguen las instrucciones propo
 
 ![LAMP 2](./images/apartado_uno/lamp2.png)
 
--  En primer lugar se crea una carpeta de trabajo donde se almacenará el proyecto.
+-  En primer lugar se crea una carpeta de trabajo y otra que me sirva de backup donde se almacenará el proyecto.
 
 ![COPIA](./images/apartado_uno/carpeta.png)
 
--  Muestra de mi fichero .emv
+-  A continuación se muestra el contenido del archivo de configuración .env, donde se definen diferentes parámetros del entorno, como los puertos utilizados, configuraciones de PHP, acceso a la base de datos y otras variables necesarias para el funcionamiento del sistema.
 
 ![EMV](./images/apartado_uno/emv.png)
 
