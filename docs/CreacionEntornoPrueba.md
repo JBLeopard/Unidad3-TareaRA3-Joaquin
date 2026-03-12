@@ -1,9 +1,10 @@
 # 1. Documentación sobre la creación del entorno de Pruebas
 
-En esta documentación se realiza la **creación del entorno de Pruebas**, que consiste en crear un entorno de pruebas, un servidor LAMP, en el que posteriormente vamos a realizar posteriormente diferentes actividades en las que introduciremos archivos con vulnerabiliades, para ver cómo podemos corregirlas posteriormente.  
+En esta documentación se describe el proceso de **creación de un entorno de prueba**. Este entorno se utilizará posteriormente para realizar distintas actividades relacionadas con la **introducción y análisis de vulnerabilidades**, con el objetivo de aprender a detectarlas y corregirlas.
 
--  Creo un escenario multicontenedor con LAMP. la encontramos en [https://github.com/sprintcube/docker-compose-lamp.git](https://github.com/sprintcube/docker-compose-lamp.git).
+Para ello se despliega un **escenario multicontenedor** utilizando Docker, que incluye los servicios necesarios para un entorno LAMP (Linux, Apache, MySQL y PHP).
 
+-  Creo un escenario multicontenedor basasdo en LAMP que encontramos en el siguiente repositorio: [https://github.com/sprintcube/docker-compose-lamp.git]
 
 ![LAMP 1](./images/apartado_uno/lamp1.png)
 
