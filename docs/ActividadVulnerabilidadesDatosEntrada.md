@@ -127,9 +127,11 @@ En mi caso utilizo [fakeupdate.net](https://fakeupdate.net/win10ue/), una de sus
 
 ### 2.1.3 Explotación 3 - Robo de cookies (Cookie Stealing)
 
-A continuación se muestra la explotación 3 **`./www/cookieStealer/index.php`**.
+A continuación se muestra la explotación 3.
 
 ![XPLOIT3](./images/apartado_dos/xploit3.png)
+
+**`./www/cookieStealer/index.php`**
 
 ```
 <?php
