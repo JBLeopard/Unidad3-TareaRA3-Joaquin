@@ -6,7 +6,7 @@ Para ello despliego un **escenario multicontenedor** utilizando Docker, que incl
 
 -  Creo un escenario multicontenedor basasdo en LAMP que encontramos en el siguiente repositorio: (https://github.com/sprintcube/docker-compose-lamp.git).
 
-![LAMP 1](./images/apartado_uno/lamp1.png)
+[LAMP 1](./images/apartado_uno/lamp1.png)
 
 ---
 
