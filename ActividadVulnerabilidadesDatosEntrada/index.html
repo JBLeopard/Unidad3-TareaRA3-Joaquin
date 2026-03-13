@@ -1,0 +1,1022 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación de la actividad de la Unidad 3">
+      
+      
+        <meta name="author" content="JBLeopard">
+      
+      
+      
+        <link rel="prev" href="../CreacionEntornoPrueba/">
+      
+      
+        <link rel="next" href="../ActividadAutenticacion/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Vulnerabilidades de inyección de datos de entrada - Unidad3-TareaRA3-Joaquin</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2-documentacion-de-vulnerabilidades-de-inyeccion-de-datos-de-entrada" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Unidad3-TareaRA3-Joaquin" class="md-header__button md-logo" aria-label="Unidad3-TareaRA3-Joaquin" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Unidad3-TareaRA3-Joaquin
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vulnerabilidades de inyección de datos de entrada
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Unidad3-TareaRA3-Joaquin" class="md-nav__button md-logo" aria-label="Unidad3-TareaRA3-Joaquin" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Unidad3-TareaRA3-Joaquin
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CreacionEntornoPrueba/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creación del entorno de Pruebas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnerabilidades de inyección de datos de entrada
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnerabilidades de inyección de datos de entrada
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-codigo-vulnerable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Código vulnerable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-esto-permite-que-un-atacante-introduzca-codigo-html-o-javascript-que-sera-ejecutado-por-el-navegador-del-usuario-asi-es-como-funciona-la-vulnerabilidad-cross-site-scripting-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        - Esto permite que un atacante introduzca código HTML o JavaScript que será ejecutado por el navegador del usuario, así es como funciona la vulnerabilidad Cross-Site Scripting (XSS).
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="- Esto permite que un atacante introduzca código HTML o JavaScript que será ejecutado por el navegador del usuario, así es como funciona la vulnerabilidad Cross-Site Scripting (XSS).">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-explotacion-1-xss-clasico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1 Explotación 1 - XSS clásico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-explotacion-2-redireccion-maliciosa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2 Explotación 2 - Redirección maliciosa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-mitigacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Mitigación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Mitigación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-mitigacion-1-uso-de-filter_input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1 MITIGACIÓN 1 - Uso de filter_input()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-mitigacion-2-validacion-de-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.2 MITIGACIÓN 2 - Validación de entrada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#223-mitigacion-3-sanitizacion-con-htmlspecialchars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.3 MITIGACIÓN 3 - Sanitización con htmlspecialchars()
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-bateria-de-pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 BATERÍA DE PRUEBAS
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ActividadAutenticacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autenticación, vulnerabilidades de gestión de sesiones, protección de datos sensibles o Control de acceso
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ActividadSeguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errores en la Seguridad y componentes vulnerables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EscaneoApp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escaneo estático y dinámico de aplicación web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-codigo-vulnerable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Código vulnerable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-esto-permite-que-un-atacante-introduzca-codigo-html-o-javascript-que-sera-ejecutado-por-el-navegador-del-usuario-asi-es-como-funciona-la-vulnerabilidad-cross-site-scripting-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        - Esto permite que un atacante introduzca código HTML o JavaScript que será ejecutado por el navegador del usuario, así es como funciona la vulnerabilidad Cross-Site Scripting (XSS).
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="- Esto permite que un atacante introduzca código HTML o JavaScript que será ejecutado por el navegador del usuario, así es como funciona la vulnerabilidad Cross-Site Scripting (XSS).">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-explotacion-1-xss-clasico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1 Explotación 1 - XSS clásico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-explotacion-2-redireccion-maliciosa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2 Explotación 2 - Redirección maliciosa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-mitigacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Mitigación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Mitigación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-mitigacion-1-uso-de-filter_input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1 MITIGACIÓN 1 - Uso de filter_input()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-mitigacion-2-validacion-de-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.2 MITIGACIÓN 2 - Validación de entrada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#223-mitigacion-3-sanitizacion-con-htmlspecialchars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.3 MITIGACIÓN 3 - Sanitización con htmlspecialchars()
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-bateria-de-pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 BATERÍA DE PRUEBAS
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="2-documentacion-de-vulnerabilidades-de-inyeccion-de-datos-de-entrada">2. Documentación de vulnerabilidades de inyección de datos de entrada<a class="headerlink" href="#2-documentacion-de-vulnerabilidades-de-inyeccion-de-datos-de-entrada" title="Permanent link">&para;</a></h1>
+<p>En esta documentación se analiza la vulnerabilidad <strong>Cross-Site Scripting (XSS)</strong> presente en una aplicación web desarrollada en PHP.  </p>
+<p>Se muestra:  </p>
+<ul>
+<li>El <strong>código vulnerable</strong>.</li>
+<li>La <strong>explotación de la vulnerabilidad</strong>.</li>
+<li>La <strong>implementación de mitigaciones</strong>.</li>
+<li>Una <strong>batería de pruebas</strong> para verificar la solución.</li>
+</ul>
+<hr />
+<h2 id="21-codigo-vulnerable">2.1 Código vulnerable<a class="headerlink" href="#21-codigo-vulnerable" title="Permanent link">&para;</a></h2>
+<p>A continuación muestro el contenido del archivo que voy a usar <code>comment.php</code>, el cual presenta una vulnerabilidad de <strong>Cross-Site Scripting (XSS)</strong> debido a que los datos introducidos por el usuario se muestran en la página sin ningún tipo de validación ni sanitización.</p>
+<p><img alt="PHP" src="./images/apartado_dos/commentphp.png" /></p>
+<p><strong><code>comment.php</code></strong></p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">// Activar errores en entorno de prácticas (opcional)</span>
+<span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_startup_errors&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+
+<span class="nv">$comment</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REQUEST_METHOD&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;POST&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// SIN SEGURIDAD: se guarda el comentario tal cual</span>
+    <span class="nv">$comment</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+<span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html lang=&quot;es&quot;&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<span class="x">    &lt;title&gt;Comentarios INSEGUROS&lt;/title&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">    &lt;h1&gt;Comentarios (versión insegura)&lt;/h1&gt;</span>
+
+<span class="x">    &lt;form method=&quot;post&quot;&gt;</span>
+<span class="x">        &lt;label for=&quot;comment&quot;&gt;Comentario:&lt;/label&gt;&lt;br&gt;</span>
+<span class="x">        &lt;!-- SIN htmlspecialchars: se muestra el contenido sin escapar --&gt;</span>
+<span class="x">        &lt;textarea name=&quot;comment&quot; id=&quot;comment&quot; rows=&quot;4&quot; cols=&quot;50&quot;&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$comment</span> <span class="cp">?&gt;</span><span class="x">&lt;/textarea&gt;&lt;br&gt;</span>
+<span class="x">        &lt;button type=&quot;submit&quot;&gt;Enviar&lt;/button&gt;</span>
+<span class="x">    &lt;/form&gt;</span>
+
+<span class="x">    </span><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$comment</span> <span class="o">!==</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+<span class="x">        &lt;h2&gt;Comentario recibido (SIN sanitizar)&lt;/h2&gt;</span>
+<span class="x">        &lt;!-- Aquí también se imprime directamente, vulnerable a XSS --&gt;</span>
+<span class="x">        &lt;p&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$comment</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</code></pre></div>
+
+<p><strong>Explicación de la vulnerabilidad</strong>  </p>
+<ul>
+<li>La aplicación recibe un comentario enviado por el usuario y lo muestra directamente en la página sin aplicar ningún mecanismo de seguridad.</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="x">$comment = $_POST[&#39;comment&#39;];</span>
+</code></pre></div>
+
+<ul>
+<li>Posteriormente se imprime directamente en el HTML:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="x">&lt;p&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$comment</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+</code></pre></div>
+
+<h2 id="-esto-permite-que-un-atacante-introduzca-codigo-html-o-javascript-que-sera-ejecutado-por-el-navegador-del-usuario-asi-es-como-funciona-la-vulnerabilidad-cross-site-scripting-xss">- Esto permite que un atacante introduzca código HTML o JavaScript que será ejecutado por el navegador del usuario, así es como funciona la vulnerabilidad <strong>Cross-Site Scripting (XSS)</strong>.<a class="headerlink" href="#-esto-permite-que-un-atacante-introduzca-codigo-html-o-javascript-que-sera-ejecutado-por-el-navegador-del-usuario-asi-es-como-funciona-la-vulnerabilidad-cross-site-scripting-xss" title="Permanent link">&para;</a></h2>
+<h3 id="211-explotacion-1-xss-clasico">2.1.1 Explotación 1 - XSS clásico<a class="headerlink" href="#211-explotacion-1-xss-clasico" title="Permanent link">&para;</a></h3>
+<p>A continuación se muestra la explotación 1.</p>
+<p><img alt="XPLOIT1" src="./images/apartado_dos/xploit1.png" /></p>
+<p><strong>Payload utilizado</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Vulnerabilidad XSS!&#39;</span><span class="p">)&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h2</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color:red;&quot;</span><span class="p">&gt;</span>Explotación 1<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p><strong>Explicación</strong></p>
+<ul>
+<li>Este ataque inserta una etiqueta <code>&lt;script&gt;</code> en el campo de comentario.</li>
+<li>Debido a que la aplicación no filtra ni escapa el contenido, el navegador interpreta el script como código ejecutable.</li>
+</ul>
+<p><strong>Resultado</strong></p>
+<ul>
+<li>Cuando la página muestra el comentario, el navegador ejecuta el script y aparece una ventana emergente <code>(alert)</code>.</li>
+<li>Esto confirma que la aplicación es vulnerable a XSS.</li>
+</ul>
+<hr />
+<h3 id="212-explotacion-2-redireccion-maliciosa">2.1.2 Explotación 2 - Redirección maliciosa<a class="headerlink" href="#212-explotacion-2-redireccion-maliciosa" title="Permanent link">&para;</a></h3>
+<p>A continuación se muestra la explotación 2.</p>
+<p><img alt="XPLOIT2" src="./images/apartado_dos/xploit2.png" /></p>
+<p><strong>Payload utilizado</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="o">=</span><span class="s1">&#39;https://fakeupdate.net/win10ue/&#39;</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h2</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color:red;&quot;</span><span class="p">&gt;</span>Explotación 2<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p><strong>Explicación</strong></p>
+<ul>
+<li>Este ataque utiliza JavaScript para redirigir automáticamente al usuario a otra página web mediante: <code>window.location</code>.</li>
+<li>Debido a la vulnerabilidad XSS, el script se ejecuta cuando la página muestra el comentario.</li>
+</ul>
+<p><strong>Impacto</strong>  </p>
+<p>Un atacante podría redirigir a los usuarios a:</p>
+<ul>
+<li>Páginas de phishing.</li>
+<li>Páginas con malware.</li>
+<li>Páginas con actualizaciones falsas del sistema.</li>
+</ul>
+<p>En mi caso utilizo <a href="https://fakeupdate.net/win10ue/">fakeupdate.net</a>, una de sus páginas falsas que simula una actualización de Windows 10.  </p>
+<hr />
+<h2 id="22-mitigacion">2.2 Mitigación<a class="headerlink" href="#22-mitigacion" title="Permanent link">&para;</a></h2>
+<p>Muestra del código modíficado con las mitigaciones aplicadas</p>
+<p><strong><code>comment.php</code></strong></p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">// ==========================</span>
+<span class="c1">// CONFIGURACIÓN DE ERRORES</span>
+<span class="c1">// ==========================</span>
+<span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+
+<span class="c1">// ==========================</span>
+<span class="c1">// INICIAR SESIÓN (CSRF)</span>
+<span class="c1">// ==========================</span>
+<span class="nb">session_start</span><span class="p">();</span>
+
+<span class="c1">// Generar token CSRF si no existe</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;csrf_token&#39;</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;csrf_token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">bin2hex</span><span class="p">(</span><span class="nb">random_bytes</span><span class="p">(</span><span class="mi">32</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// ==========================</span>
+<span class="c1">// VARIABLES</span>
+<span class="c1">// ==========================</span>
+<span class="nv">$comment</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="nv">$error</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="nv">$success</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="c1">// ==========================</span>
+<span class="c1">// PROCESAMIENTO DEL FORMULARIO</span>
+<span class="c1">// ==========================</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&quot;POST&quot;</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// ==========================</span>
+    <span class="c1">// 1. VERIFICACIÓN CSRF</span>
+    <span class="c1">// ==========================</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;csrf_token&#39;</span><span class="p">])</span> <span class="o">||</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;csrf_token&#39;</span><span class="p">]</span> <span class="o">!==</span> <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;csrf_token&#39;</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nv">$error</span> <span class="o">=</span> <span class="s2">&quot;Error: Token CSRF inválido.&quot;</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+        <span class="c1">// ==========================</span>
+        <span class="c1">// 2️. MITIGACIÓN 1:</span>
+        <span class="c1">// USO DE filter_input()</span>
+        <span class="c1">// ==========================</span>
+        <span class="nv">$comment</span> <span class="o">=</span> <span class="nb">filter_input</span><span class="p">(</span><span class="nx">INPUT_POST</span><span class="p">,</span> <span class="s1">&#39;comment&#39;</span><span class="p">,</span> <span class="nx">FILTER_UNSAFE_RAW</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$comment</span> <span class="o">===</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$comment</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Eliminar espacios al inicio y final</span>
+        <span class="nv">$comment</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$comment</span><span class="p">);</span>
+
+        <span class="c1">// ==========================</span>
+        <span class="c1">// 3️. MITIGACIÓN 2:</span>
+        <span class="c1">// VALIDACIÓN DE ENTRADA</span>
+        <span class="c1">// ==========================</span>
+
+        <span class="nv">$length</span> <span class="o">=</span> <span class="nb">mb_strlen</span><span class="p">(</span><span class="nv">$comment</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$error</span> <span class="o">=</span> <span class="s2">&quot;El comentario no puede estar vacío.&quot;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$length</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$error</span> <span class="o">=</span> <span class="s2">&quot;El comentario no puede superar los 500 caracteres.&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// Permitir letras, números, espacios y puntuación básica</span>
+        <span class="k">elseif</span> <span class="p">(</span><span class="o">!</span><span class="nb">preg_match</span><span class="p">(</span><span class="s1">&#39;/^[\p{L}\p{N}\s.,!?¡¿()@#%&amp;\-]*$/u&#39;</span><span class="p">,</span> <span class="nv">$comment</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$error</span> <span class="o">=</span> <span class="s2">&quot;El comentario contiene caracteres no permitidos.&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+
+            <span class="c1">// ==========================</span>
+            <span class="c1">// 4️. MITIGACIÓN 3:</span>
+            <span class="c1">// SANITIZAR CON htmlspecialchars()</span>
+            <span class="c1">// ==========================</span>
+            <span class="nv">$comment</span> <span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span>
+                <span class="nv">$comment</span><span class="p">,</span>
+                <span class="nx">ENT_QUOTES</span> <span class="o">|</span> <span class="nx">ENT_SUBSTITUTE</span><span class="p">,</span>
+                <span class="s1">&#39;UTF-8&#39;</span>
+            <span class="p">);</span>
+
+            <span class="nv">$success</span> <span class="o">=</span> <span class="s2">&quot;Comentario publicado correctamente.&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+<span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html lang=&quot;es&quot;&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<span class="x">    &lt;title&gt;Comentarios Seguros&lt;/title&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+
+<span class="x">&lt;h1&gt;Formulario seguro con 3 mitigaciones&lt;/h1&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$error</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+<span class="x">    &lt;p style=&quot;color:red;&quot;&gt;</span>
+<span class="x">        </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$error</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
+<span class="x">    &lt;/p&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$success</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+<span class="x">    &lt;p style=&quot;color:green;&quot;&gt;</span>
+<span class="x">        </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$success</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span>
+<span class="x">    &lt;/p&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
+
+<span class="x">&lt;form method=&quot;post&quot;&gt;</span>
+
+<span class="x">    &lt;label&gt;Comentario:&lt;/label&gt;&lt;br&gt;</span>
+
+<span class="x">    &lt;textarea name=&quot;comment&quot; rows=&quot;4&quot; cols=&quot;50&quot;&gt;&lt;/textarea&gt;&lt;br&gt;&lt;br&gt;</span>
+
+<span class="x">    &lt;!-- Token CSRF --&gt;</span>
+<span class="x">    &lt;input type=&quot;hidden&quot;</span>
+<span class="x">           name=&quot;csrf_token&quot;</span>
+<span class="x">           value=&quot;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;csrf_token&#39;</span><span class="p">],</span> <span class="nx">ENT_QUOTES</span><span class="p">,</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&quot;&gt;</span>
+
+<span class="x">    &lt;button type=&quot;submit&quot;&gt;Enviar&lt;/button&gt;</span>
+
+<span class="x">&lt;/form&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$success</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+<span class="x">    &lt;h2&gt;Comentario recibido:&lt;/h2&gt;</span>
+<span class="x">    &lt;p&gt;</span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$comment</span> <span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
+
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</code></pre></div>
+
+<hr />
+<h3 id="221-mitigacion-1-uso-de-filter_input">2.2.1 MITIGACIÓN 1 - Uso de filter_input()<a class="headerlink" href="#221-mitigacion-1-uso-de-filter_input" title="Permanent link">&para;</a></h3>
+<p>Código aplicado:</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$comment = filter_input(INPUT_POST, &#39;comment&#39;, FILTER_UNSAFE_RAW);</span>
+</code></pre></div>
+
+<p>Explicación:</p>
+<p>La función <code>filter_input()</code> permite obtener datos procedentes de entradas externas como formularios <code>POST</code>, en este caso se utiliza para recuperar el contenido del campo <code>comment</code>.</p>
+<p>El filtro utilizado es <code>FILTER_UNSAFE_RAW</code>, este filtro obtiene el dato sin modificarlo para permitir aplicar posteriormente validaciones personalizadas.</p>
+<hr />
+<h3 id="222-mitigacion-2-validacion-de-entrada">2.2.2 MITIGACIÓN 2 - Validación de entrada<a class="headerlink" href="#222-mitigacion-2-validacion-de-entrada" title="Permanent link">&para;</a></h3>
+<p>Código aplicado:</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$comment = trim($comment);</span>
+
+<span class="x">$length = mb_strlen($comment, &#39;UTF-8&#39;);</span>
+
+<span class="x">if ($length === 0) {</span>
+<span class="x">    $error = &quot;El comentario no puede estar vacío.&quot;;</span>
+<span class="x">} elseif ($length &gt; 500) {</span>
+<span class="x">    $error = &quot;El comentario no puede superar los 500 caracteres.&quot;;</span>
+<span class="x">}</span>
+<span class="x">elseif (!preg_match(&#39;/^[\p{L}\p{N}\s.,!?¡¿()@#%&amp;\-]*$/u&#39;, $comment)) {</span>
+<span class="x">    $error = &quot;El comentario contiene caracteres no permitidos.&quot;;</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p>Explicación:</p>
+<p>Se aplican tres validaciones:</p>
+<ul>
+<li>Eliminación de espacios, <code>trim()</code> elimina espacios al inicio y al final.</li>
+<li>Validación de longitud, se limita el comentario a un máximo de 500 caracteres.</li>
+<li>Validación de caracteres, se utiliza una expresión regular para permitir únicamente letras, números, espacios y puntuación básica.</li>
+</ul>
+<p>Esto evita que el usuario introduzca etiquetas HTML o código JavaScript.</p>
+<hr />
+<h3 id="223-mitigacion-3-sanitizacion-con-htmlspecialchars">2.2.3 MITIGACIÓN 3 - Sanitización con htmlspecialchars()<a class="headerlink" href="#223-mitigacion-3-sanitizacion-con-htmlspecialchars" title="Permanent link">&para;</a></h3>
+<p>Código aplicado:</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$comment = htmlspecialchars(</span>
+<span class="x">    $comment,</span>
+<span class="x">    ENT_QUOTES | ENT_SUBSTITUTE,</span>
+<span class="x">    &#39;UTF-8&#39;</span>
+<span class="x">);</span>
+</code></pre></div>
+
+<p>Explicación:</p>
+<p>La función <code>htmlspecialchars()</code> convierte caracteres especiales en entidades <code>HTML</code> seguras.</p>
+<p>Ejemplo: <strong>Entrada</strong> <code>&lt;script&gt;</code> <strong>Salida</strong> <code>&amp;lt;script&amp;gt;</code>.</p>
+<p>Esto impide que el navegador ejecute el contenido como código.</p>
+<hr />
+<h2 id="23-bateria-de-pruebas">2.3 BATERÍA DE PRUEBAS<a class="headerlink" href="#23-bateria-de-pruebas" title="Permanent link">&para;</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
