@@ -261,12 +261,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ```
 ---
 
-### 2.2.1 MITIGACIÓN 1 — Uso de filter_input()
+### 2.2.1 MITIGACIÓN 1 - Uso de filter_input()
 
 Código aplicado:
 
-`$comment = filter_input(INPUT_POST, 'comment', FILTER_UNSAFE_RAW);`
-
+```php
+$comment = filter_input(INPUT_POST, 'comment', FILTER_UNSAFE_RAW);
+```
 Explicación:
 
 La función `filter_input()` permite obtener datos procedentes de entradas externas como formularios `POST`, en este caso se utiliza para recuperar el contenido del campo `comment`.
@@ -275,7 +276,7 @@ El filtro utilizado es `FILTER_UNSAFE_RAW`, este filtro obtiene el dato sin modi
 
 ---
 
-### 2.2.2 MITIGACIÓN 2 — Validación de entrada
+### 2.2.2 MITIGACIÓN 2 - Validación de entrada
 
 Código aplicado:
 
@@ -305,7 +306,7 @@ Esto evita que el usuario introduzca etiquetas HTML o código JavaScript.
 
 ---
 
-### 2.2.3 MITIGACIÓN 3 — Sanitización con htmlspecialchars()
+### 2.2.3 MITIGACIÓN 3 - Sanitización con htmlspecialchars()
 
 Código aplicado:
 
