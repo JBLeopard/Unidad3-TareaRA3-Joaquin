@@ -244,9 +244,18 @@ Esto significa que puede:
 - Acceder a información privada.
 - Modificar datos del sistema.
 
+**Limitaciones del ataque**  
+
+Este ataque puede mitigarse mediante ciertas configuraciones de seguridad, por ejemplo
+las cookies con el atributo `HttpOnly` no pueden ser accedidas mediante JavaScript, por lo que `document.cookie` no puede leerlas.
+
+Esto reduce significativamente el riesgo de robo de cookies mediante XSS.
+
 ---
 
 ## 2.2 Mitigación
+
+Muestra del código modíficados con las mitigaciones usadas
 
 **`comment.php`**
 ```php
