@@ -255,7 +255,7 @@ Esto reduce significativamente el riesgo de robo de cookies mediante XSS.
 
 ## 2.2 Mitigación
 
-Muestra del código modíficados con las mitigaciones usadas
+Muestra del código modíficado con las mitigaciones aplicadas
 
 **`comment.php`**
 ```php
