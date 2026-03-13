@@ -263,7 +263,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 ### 2.2.1 MITIGACIÓN 1 — Uso de filter_input()
 
-**`comment.php`**
+Código aplicado:
+
+php`$comment = filter_input(INPUT_POST, 'comment', FILTER_UNSAFE_RAW);`
 
 ---
 
