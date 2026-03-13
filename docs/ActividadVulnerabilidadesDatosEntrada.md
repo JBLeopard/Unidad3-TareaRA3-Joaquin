@@ -18,7 +18,7 @@ A continuación muestro el contenido del archivo que voy a usar `comment.php`, e
 ![PHP](./images/apartado_dos/commentphp.png)
 
 **`comment.php`**
-```
+```php
 <?php
 // Activar errores en entorno de prácticas (opcional)
 ini_set('display_errors', 1);
@@ -145,7 +145,7 @@ A continuación se muestra la explotación 3.
 
 **`./www/cookieStealer/index.php`**
 
-```
+```php
 <?php
 // Obtener la fecha actual
 $date = date("Y/m/d H:i:s");
