@@ -265,19 +265,64 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 Código aplicado:
 
-php`$comment = filter_input(INPUT_POST, 'comment', FILTER_UNSAFE_RAW);`
+`$comment = filter_input(INPUT_POST, 'comment', FILTER_UNSAFE_RAW);`
+
+Explicación:
+
+La función `filter_input()` permite obtener datos procedentes de entradas externas como formularios `POST`, en este caso se utiliza para recuperar el contenido del campo `comment`.
+
+El filtro utilizado es `FILTER_UNSAFE_RAW`, este filtro obtiene el dato sin modificarlo para permitir aplicar posteriormente validaciones personalizadas.
 
 ---
 
 ### 2.2.2 MITIGACIÓN 2 — Validación de entrada
 
-**`comment.php`**
+Código aplicado:
+
+```php
+$comment = trim($comment);
+
+$length = mb_strlen($comment, 'UTF-8');
+
+if ($length === 0) {
+    $error = "El comentario no puede estar vacío.";
+} elseif ($length > 500) {
+    $error = "El comentario no puede superar los 500 caracteres.";
+}
+elseif (!preg_match('/^[\p{L}\p{N}\s.,!?¡¿()@#%&\-]*$/u', $comment)) {
+    $error = "El comentario contiene caracteres no permitidos.";
+}
+```
+Explicación:
+
+Se aplican tres validaciones:
+
+- Eliminación de espacios, `trim()` elimina espacios al inicio y al final.
+- Validación de longitud, se limita el comentario a un máximo de 500 caracteres.
+- Validación de caracteres, se utiliza una expresión regular para permitir únicamente letras, números, espacios y puntuación básica.
+
+Esto evita que el usuario introduzca etiquetas HTML o código JavaScript.
 
 ---
 
 ### 2.2.3 MITIGACIÓN 3 — Sanitización con htmlspecialchars()
 
-**`comment.php`**
+Código aplicado:
+
+```php
+$comment = htmlspecialchars(
+    $comment,
+    ENT_QUOTES | ENT_SUBSTITUTE,
+    'UTF-8'
+);
+```
+Explicación:
+
+La función `htmlspecialchars()` convierte caracteres especiales en entidades `HTML` seguras.
+
+Ejemplo: **Entrada** `<script>` **Salida** `&lt;script&gt;`.
+
+Esto impide que el navegador ejecute el contenido como código.
 
 ---
 
