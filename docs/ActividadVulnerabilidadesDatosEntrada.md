@@ -13,7 +13,7 @@ Se muestra:
 
 ## 2.1 Código vulnerable
 
-A continuación muestro el contenido del archivo que voy a usar `comentarios.php`, el cual presenta una vulnerabilidad de **Cross-Site Scripting (XSS)** debido a que los datos introducidos por el usuario se muestran en la página sin ningún tipo de validación ni sanitización.
+A continuación muestro el contenido del archivo que voy a usar `comentario.php`, es una web tipo formulario para insertar texto, la cual presenta una vulnerabilidad de **Cross-Site Scripting (XSS)** debido a que los datos introducidos por el usuario se muestran en la página sin ningún tipo de validación ni sanitización.
 
 ![PHP](./images/apartado_dos/commentphp.png)
 
