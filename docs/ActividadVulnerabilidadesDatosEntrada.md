@@ -72,7 +72,7 @@ $comment = $_POST['comment'];
 - Esto permite que un atacante introduzca código HTML o JavaScript que será ejecutado por el navegador del usuario, así es como funciona la vulnerabilidad **Cross-Site Scripting (XSS)**.
 ---
 
-### 2.1.1 Explotación 1 - XSS clásico
+### Explotación 1 - XSS clásico
 
 A continuación se muestra la explotación 1.
 
@@ -96,7 +96,7 @@ A continuación se muestra la explotación 1.
 
 ---
 
-### 2.1.2 Explotación 2 - Redirección maliciosa
+### Explotación 2 - Redirección maliciosa
 
 A continuación se muestra la explotación 2.
 
@@ -261,7 +261,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ```
 ---
 
-### 2.2.1 Mitigación 1 - Uso de filter_input()
+### Mitigación 1 - Uso de filter_input()
 
 Código aplicado:
 
@@ -276,7 +276,7 @@ El filtro utilizado es `FILTER_UNSAFE_RAW`, este filtro obtiene el dato sin modi
 
 ---
 
-### 2.2.2 Mitigación 2 - Validación de entrada
+### Mitigación 2 - Validación de entrada
 
 Código aplicado:
 
@@ -306,7 +306,7 @@ Esto evita que el usuario introduzca etiquetas HTML o código JavaScript.
 
 ---
 
-### 2.2.3 MITIGACIÓN 3 - Sanitización con htmlspecialchars()
+### Mitigación 3 - Sanitización con htmlspecialchars()
 
 Código aplicado:
 
