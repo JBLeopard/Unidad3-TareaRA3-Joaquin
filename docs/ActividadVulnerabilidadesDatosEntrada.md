@@ -102,7 +102,7 @@ A continuación se muestra la explotación 1.
 A continuación se muestra la explotación 2.
 
 ![XPLOIT2A](./images/apartado_dos/xploit2a.png)
-![XPLOIT2B](./images/apartado_dos/xploit2a.png)
+![XPLOIT2B](./images/apartado_dos/xploit2b.png)
 
 **Payload utilizado**
 
