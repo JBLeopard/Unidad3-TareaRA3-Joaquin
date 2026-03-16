@@ -43,14 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form method="post">
         <label for="comment">Comentario:</label><br>
-        // SIN htmlspecialchars: SE MUESTRA EL CONTENIDO SIN ESCAPAR
+        <!-- SIN htmlspecialchars: SE MUESTRA EL CONTENIDO SIN ESCAPAR -->
         <textarea name="comment" id="comment" rows="4" cols="50"><?= $comment ?></textarea><br>
         <button type="submit">Enviar</button>
     </form>
 
     <?php if ($comment !== ''): ?>
         <h2>Comentario recibido (SIN sanitizar)</h2>
-        // SE IMPRIME DE FORMA DIRECTA, VULNERABLE A XSS
+        <!-- SE IMPRIME DE FORMA DIRECTA, VULNERABLE A XSS -->
         <p><?= $comment ?></p>
     <?php endif; ?>
 </body>
