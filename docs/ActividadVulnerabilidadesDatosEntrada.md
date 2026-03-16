@@ -333,7 +333,8 @@ Tras aplicar las mitigaciones se realizaron varias pruebas para comprobar el com
 
 **Prueba 1 - Intento de inyección de script (XSS)**
 
-Payload: ```js
+Payload: 
+```js
 <script>alert('Vulnerabilidad XSS')</script>
 ```
 
