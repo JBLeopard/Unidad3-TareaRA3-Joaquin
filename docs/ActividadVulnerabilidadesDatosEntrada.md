@@ -331,15 +331,36 @@ Esto impide que el navegador ejecute el contenido como código.
 
 Tras aplicar las mitigaciones se realizaron varias pruebas para comprobar el comportamiento de la aplicación.
 
-**Prueba 1 - Intento de XSS**
+**Prueba 1 - Intento de inyección de script (XSS)**
 
 Payload: `<script>alert('Vulnerabilidad XSS')</script>`
 
-Resultado: el sistema detecta caracteres no permitidos y muestra un mensaje de error, el script no se ejecuta.  
+ - Objetivo de la prueba: comprobar si el sistema bloquea la introducción de código JavaScript dentro del campo de comentario.
+ - Resultado esperado: el sistema debe detectar caracteres no permitidos (`<` y `>`) y rechazar el comentario.
+ - Resultado observado: el comentario es rechazado, la aplicación muestra el mensaje de error y el script no se ejecuta.
+
+**Prueba 2 - Comentario vacío**
+
+ - Objetivo de la prueba: comprobar que el sistema detecta comentarios vacíos o formados únicamente por espacios.
+ - Resultado esperado: el sistema debe mostrar un mensaje indicando que el comentario no puede estar vacío.
+ - Resultado observado: la aplicación muestra el mensaje de error.
 
 
-**Prueba 2 - Redirección maliciosa**
+**Prueba 3 - Exceso de longitud**
 
-Payload: `<script>window.location='https://fakeupdate.net/win10ue/'</script>`
+Payload: texto superior a 500 caracteres.
 
-Resultado: el comentario es rechazado debido a la validación de caracteres, no se produce ninguna redirección.
+ - Objetivo de la prueba: verificar que el sistema limita la longitud del comentario a un máximo de 500 caracteres.
+ - Resultado esperado: el sistema debe rechazar el comentario si supera el límite establecido.
+ - Resultado observado: la aplicación muestra el mensaje de error.
+
+**Prueba 4 - Comentario válido**
+
+Payload: texto "PPS con Joaquín en Avanza".
+
+ - Objetivo de la prueba: comprobar que el sistema permite comentarios que cumplen las reglas establecidas.
+ - Resultado esperado: el comentario debe ser aceptado y mostrarse correctamente en la página.
+ - Resultado observado: la aplicación muestra el mensaje correctamente.
+
+---
+
