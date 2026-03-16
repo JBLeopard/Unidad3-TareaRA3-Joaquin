@@ -333,10 +333,7 @@ Tras aplicar las mitigaciones se realizaron varias pruebas para comprobar el com
 
 **Prueba 1 - Intento de inyección de script (XSS)**
 
-Payload: 
-```js
-<script>alert('Vulnerabilidad XSS')</script>
-```
+Payload: `<script>alert('Vulnerabilidad XSS')</script>`
 
  - Objetivo de la prueba: comprobar si el sistema bloquea la introducción de código JavaScript dentro del campo de comentario.
  - Resultado esperado: el sistema debe detectar caracteres no permitidos (`<` y `>`) y rechazar el comentario.
