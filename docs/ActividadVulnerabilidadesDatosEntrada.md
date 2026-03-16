@@ -17,7 +17,7 @@ A continuación muestro el contenido del archivo que voy a usar `comentarios.php
 
 ![PHP](./images/apartado_dos/commentphp.png)
 
-**`comentarios.php`**
+**`comentario.php`**
 ```php
 <?php
 // Activar errores en entorno de prácticas (opcional)
@@ -130,7 +130,7 @@ En mi caso utilizo [fakeupdate.net](https://fakeupdate.net/win10ue/), una de sus
 
 Muestra del código modíficado con las mitigaciones aplicadas
 
-**`commentarios_ok.php`**
+**`commentario_ok.php`**
 ```php
 <?php
 // ==========================
