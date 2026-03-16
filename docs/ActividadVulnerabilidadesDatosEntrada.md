@@ -377,7 +377,8 @@ Payload: texto "PPS con Joaquín en Avanza".
  - Resultado esperado: el comentario debe ser aceptado y mostrarse correctamente en la página.
  - Resultado observado: la aplicación muestra el mensaje correctamente.
 
+---
+
 ![PRUEBA4](./images/apartado_dos/prueba4.png)
 
 ---
-
