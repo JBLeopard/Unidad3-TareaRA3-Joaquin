@@ -222,7 +222,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
 
-<h1>Formulario seguro con 3 mitigaciones</h1>
+<h1>Formulario seguro con mitigaciones</h1>
 
 <?php if ($error): ?>
     <p style="color:red;">
