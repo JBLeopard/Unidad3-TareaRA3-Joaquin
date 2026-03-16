@@ -261,7 +261,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ```
 ---
 
-### 2.2.1 MITIGACIÓN 1 - Uso de filter_input()
+### 2.2.1 Mitigación 1 - Uso de filter_input()
 
 Código aplicado:
 
@@ -276,7 +276,7 @@ El filtro utilizado es `FILTER_UNSAFE_RAW`, este filtro obtiene el dato sin modi
 
 ---
 
-### 2.2.2 MITIGACIÓN 2 - Validación de entrada
+### 2.2.2 Mitigación 2 - Validación de entrada
 
 Código aplicado:
 
@@ -327,4 +327,4 @@ Esto impide que el navegador ejecute el contenido como código.
 
 ---
 
-## 2.3 BATERÍA DE PRUEBAS
+## 2.3 Batería de pruebas
