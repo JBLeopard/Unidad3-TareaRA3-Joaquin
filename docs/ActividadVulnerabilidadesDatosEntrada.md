@@ -328,3 +328,18 @@ Esto impide que el navegador ejecute el contenido como código.
 ---
 
 ## 2.3 Batería de pruebas
+
+Tras aplicar las mitigaciones se realizaron varias pruebas para comprobar el comportamiento de la aplicación.
+
+**Prueba 1 - Intento de XSS**
+
+Payload: `<script>alert('Vulnerabilidad XSS')</script>`
+
+Resultado: el sistema detecta caracteres no permitidos y muestra un mensaje de error, el script no se ejecuta.  
+
+
+**Prueba 2 - Redirección maliciosa**
+
+Payload: `<script>window.location='https://fakeupdate.net/win10ue/'</script>`
+
+Resultado: el comentario es rechazado debido a la validación de caracteres, no se produce ninguna redirección.
