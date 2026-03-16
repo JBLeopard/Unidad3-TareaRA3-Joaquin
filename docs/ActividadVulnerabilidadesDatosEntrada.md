@@ -13,11 +13,11 @@ Se muestra:
 
 ## 2.1 Código vulnerable
 
-A continuación muestro el contenido del archivo que voy a usar `comment.php`, el cual presenta una vulnerabilidad de **Cross-Site Scripting (XSS)** debido a que los datos introducidos por el usuario se muestran en la página sin ningún tipo de validación ni sanitización.
+A continuación muestro el contenido del archivo que voy a usar `comentarios.php`, el cual presenta una vulnerabilidad de **Cross-Site Scripting (XSS)** debido a que los datos introducidos por el usuario se muestran en la página sin ningún tipo de validación ni sanitización.
 
 ![PHP](./images/apartado_dos/commentphp.png)
 
-**`comment.php`**
+**`comentarios.php`**
 ```php
 <?php
 // Activar errores en entorno de prácticas (opcional)
@@ -130,7 +130,7 @@ En mi caso utilizo [fakeupdate.net](https://fakeupdate.net/win10ue/), una de sus
 
 Muestra del código modíficado con las mitigaciones aplicadas
 
-**`comment.php`**
+**`commentarios_ok.php`**
 ```php
 <?php
 // ==========================
