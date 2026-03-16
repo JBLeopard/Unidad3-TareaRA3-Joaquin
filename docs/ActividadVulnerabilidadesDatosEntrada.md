@@ -15,7 +15,7 @@ Se muestra:
 
 A continuación muestro el contenido del archivo que voy a usar `comentario.php`, es una web tipo formulario para insertar texto, la cual presenta una vulnerabilidad de **Cross-Site Scripting (XSS)** debido a que los datos introducidos por el usuario se muestran en la página sin ningún tipo de validación ni sanitización.
 
-![PHP](./images/apartado_dos/commentphp.png)
+![PHP1](./images/apartado_dos/comentario.png)
 
 **`comentario.php`**
 ```php
@@ -76,7 +76,8 @@ $comment = $_POST['comment'];
 
 A continuación se muestra la explotación 1.
 
-![XPLOIT1](./images/apartado_dos/xploit1.png)
+![XPLOIT1A](./images/apartado_dos/xploit1a.png)
+![XPLOIT1A](./images/apartado_dos/xploit1b.png)
 
 **Payload utilizado**
 
@@ -100,7 +101,8 @@ A continuación se muestra la explotación 1.
 
 A continuación se muestra la explotación 2.
 
-![XPLOIT2](./images/apartado_dos/xploit2.png)
+![XPLOIT2A](./images/apartado_dos/xploit2a.png)
+![XPLOIT2B](./images/apartado_dos/xploit2a.png)
 
 **Payload utilizado**
 
@@ -128,7 +130,9 @@ En mi caso utilizo [fakeupdate.net](https://fakeupdate.net/win10ue/), una de sus
 
 ## 2.2 Mitigación
 
-Muestra del código modíficado con las mitigaciones aplicadas
+Muestra del código modíficado con las mitigaciones aplicadas.
+
+![PHP2](./images/apartado_dos/comentario_ok.png)
 
 **`commentario_ok.php`**
 ```php
@@ -339,12 +343,19 @@ Payload: `<script>alert('Vulnerabilidad XSS')</script>`
  - Resultado esperado: el sistema debe detectar caracteres no permitidos (`<` y `>`) y rechazar el comentario.
  - Resultado observado: el comentario es rechazado, la aplicación muestra el mensaje de error y el script no se ejecuta.
 
+![PRUEBA1](./images/apartado_dos/prueba1.png)
+
+---
+
 **Prueba 2 - Comentario vacío**
 
  - Objetivo de la prueba: comprobar que el sistema detecta comentarios vacíos o formados únicamente por espacios.
  - Resultado esperado: el sistema debe mostrar un mensaje indicando que el comentario no puede estar vacío.
  - Resultado observado: la aplicación muestra el mensaje de error.
 
+![PRUEBA2](./images/apartado_dos/prueba2.png)
+
+---
 
 **Prueba 3 - Exceso de longitud**
 
@@ -354,6 +365,10 @@ Payload: texto superior a 500 caracteres.
  - Resultado esperado: el sistema debe rechazar el comentario si supera el límite establecido.
  - Resultado observado: la aplicación muestra el mensaje de error.
 
+![PRUEBA3](./images/apartado_dos/prueba3.png)
+
+---
+
 **Prueba 4 - Comentario válido**
 
 Payload: texto "PPS con Joaquín en Avanza".
@@ -361,6 +376,8 @@ Payload: texto "PPS con Joaquín en Avanza".
  - Objetivo de la prueba: comprobar que el sistema permite comentarios que cumplen las reglas establecidas.
  - Resultado esperado: el comentario debe ser aceptado y mostrarse correctamente en la página.
  - Resultado observado: la aplicación muestra el mensaje correctamente.
+
+![PRUEBA4](./images/apartado_dos/prueba4.png)
 
 ---
 
