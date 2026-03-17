@@ -17,12 +17,15 @@ A continuación muestro la instalación de la herramienta de código abierto de 
 
 ### Instalación OWASP Dependency-Check
 
+![OWASP](./images/apartado_cuatro/owasp.png)
 
-
+---
 
 ### Solicitud key API NVD
 
+![API](./images/apartado_cuatro/apikey.png)
 
+---
 
 ## 4.2 Análisis de proyecto en Node.js
 
@@ -30,9 +33,15 @@ A continuación muestro la instalación de la herramienta de código abierto de 
 
 Para verificar vulnerabilidades en las dependencias de un proyecto basado en Node.js, nstalamos `nodejs` y `npm`:
 
+![NODEJS1](./images/apartado_cuatro/nodejs1.png)
 
+---
 
 ### Estado inicial y vulnerabilidad
 
 Se crea un proyecto en Node.js e instalamos librerías con versiones conocidas por contener vulnerabilidades.
+
+![NODEJS](./images/apartado_cuatro/nodejs2.png)
+
+---
 
