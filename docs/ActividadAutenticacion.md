@@ -505,6 +505,7 @@ Acción realizada: intentar iniciar sesión con la contraseña correcta después
 Tengo la clave guardada pero hasta 15 minutos después de las 14:17 no me deja entrar con mis credenciales correctas.
 
 ![PRUEBA4B](./images/apartado_tres/prueba4b.png)
+![PRUEBA4C](./images/apartado_tres/prueba4c.png)
 
 Aquí ya se ve como puedo entrar después del tiempo programado de bloqueo.
 
