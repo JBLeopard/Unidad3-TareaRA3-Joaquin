@@ -30,7 +30,7 @@ CREATE TABLE participantes (
 
 INSERT INTO participantes (usuario, clave)
 VALUES ('snake','1980'),
-       ('admin','dragon');
+       ('admin','leopard');
 ```
 
 ### Código vulnerable
