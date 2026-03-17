@@ -97,7 +97,7 @@ $conn->close();
 Este sistema tiene varios problemas:  
 
 - **Contraseñas en texto plano**, en la base de datos se guardan así: `snake | 1980`.
-- **SQL Injection**, la consulta usa variables directamente: `$query = "SELECT * FROM usuarios WHERE usuario='$username' AND clave='$password'";`, un atacante puede introducir `' OR '1'='1`.
+- **SQL Injection**, la consulta usa variables directamente: `$query = "SELECT * FROM participantes WHERE usuario='$username' AND clave='$password'";`, un atacante puede introducir `' OR '1'='1`.
 - **Sin protección contra fuerza bruta**, el sistema permite infinitos intentos de login.
 
 ---
@@ -192,7 +192,7 @@ if(password_verify($password,$hash)){
 
 $message="Login correcto";
 
-$reset=$conn->prepare("UPDATE usuarios SET failed_attempts=0,last_attempt=NULL WHERE usuario=?");
+$reset=$conn->prepare("UPDATE participantes SET failed_attempts=0,last_attempt=NULL WHERE usuario=?");
 $reset->bind_param("s",$username);
 $reset->execute();
 
@@ -270,7 +270,7 @@ Esto evita almacenar contraseñas en texto plano.
 Código aplicado:
 
 ```php
-$stmt = $conn->prepare("SELECT contrasenya,failed_attempts,last_attempt FROM usuarios WHERE usuario=?");
+$stmt = $conn->prepare("SELECT clave,failed_attempts,last_attempt FROM participantes WHERE usuario=?");
 $stmt->bind_param("s", $username);
 $stmt->execute();
 ```
@@ -337,7 +337,7 @@ if(password_verify($password, $hash)){
 Si la contraseña es correcta, reinicia contador y quita bloqueo.  
 
 ```php
-$reset = $conn->prepare("UPDATE usuarios SET failed_attempts=0,last_attempt=NULL WHERE usuario=?");
+$reset = $conn->prepare("UPDATE participantes SET failed_attempts=0,last_attempt=NULL WHERE usuario=?");
 ```
 
 - **Caso 2:** Login incorrecto  
@@ -349,7 +349,7 @@ $failed_attempts++;
 Suma un intento fallido y guarda número de intentos con hora del intento.
 
 ```php
-$update = $conn->prepare("UPDATE usuarios SET failed_attempts=?, last_attempt=NOW() WHERE usuario=?");
+$update = $conn->prepare("UPDATE participantes SET failed_attempts=?, last_attempt=NOW() WHERE usuario=?");
 ```
 
 ---
