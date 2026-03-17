@@ -17,6 +17,8 @@ Se muestra:
 
 Primero creo la base de datos `jugadores` con la tabla `participantes` e inserto datos en las filas de `usuario` y `clave`.
 
+![SQL](./images/apartado_tres/sql.png)
+
 ```sql
 CREATE DATABASE jugadores;
 USE jugadores;
@@ -29,5 +31,64 @@ CREATE TABLE participantes (
 INSERT INTO participantes (usuario, clave)
 VALUES ('snake','1980'),
        ('kratos','password');
-´´´
+```
+
+### Creación base de datos
+
+La aplicación utiliza el archivo login_debil.php para autenticar a los usuarios, este sistema presenta varias vulnerabilidades de seguridad relacionadas con la autenticación.
+
+
+**`login_debil.php`**
+
+```php
+<?php
+// ACTIVAR ERRORES
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// CONEXIÓN A BASE DE DATOS
+$conn = new mysqli("database", "root", "tiger", "jugadores");
+
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+
+// PROCESAR PETICIÓN
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    echo "<p>Usuario introducido: $username</p>";
+    echo "<p>Clave introducida: $password</p>";
+
+    // CONSULTA INSEGURA
+    $query = "SELECT * FROM participantes WHERE usuario='$username' AND clave='$password'";
+    echo "<p>Consulta SQL: $query</p>";
+
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        echo "<h2>Inicio de sesión exitoso</h2>";
+    } else {
+        echo "<h2>Usuario o contraseña incorrectos</h2>";
+    }
+}
+
+$conn->close();
+?>
+
+<h1>Login vulnerable</h1>
+
+<form method="post">
+<input type="text" name="username" placeholder="Usuario"><br><br>
+<input type="password" name="password" placeholder="Clave"><br><br>
+<button type="submit">Login</button>
+</form>
+```
+
+
+
+
+
 
