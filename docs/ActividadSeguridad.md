@@ -22,3 +22,17 @@ A continuación muestro la instalación de la herramienta de código abierto de 
 
 ### Solicitud key API NVD
 
+
+
+## 4.2 Análisis de proyecto en Node.js
+
+### Instalación Node,js
+
+Para verificar vulnerabilidades en las dependencias de un proyecto basado en Node.js, nstalamos `nodejs` y `npm`:
+
+
+
+### Estado inicial y vulnerabilidad
+
+Se crea un proyecto en Node.js e instalamos librerías con versiones conocidas por contener vulnerabilidades.
+
