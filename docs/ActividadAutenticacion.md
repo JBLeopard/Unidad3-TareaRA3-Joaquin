@@ -360,7 +360,7 @@ Para poder utilizar el sistema de autenticación seguro es necesario almacenar l
 
 Para ello se ha desarrollado el archivo `agregar_usuario.php`, que permite registrar nuevos usuarios utilizando la función `password_hash()` de PHP. Esta función genera un hash seguro utilizando el algoritmo **bcrypt**, lo que impide recuperar la contraseña original incluso si un atacante accede a la base de datos.
 
-![PHP3](./images/apartado_tres/agregar_usuario.png)
+![PHP3](./images/apartado_tres/crear_usuario.png)
 
 **`agregar_usuario.php`**
 
@@ -452,7 +452,7 @@ $conn->close();
 
 Prueba creación nuevo usuario:
 
-![USER](./images/apartado_tres/usuario.png)
+![USER](./images/apartado_tres/usuario_joaquin.png)
 
 ---
 
