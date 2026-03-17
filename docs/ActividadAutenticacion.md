@@ -13,4 +13,21 @@ Se muestra:
 
 ## 2.1 Base de datos y código vulnerable
 
-A continuación muestro el contenido del archivo que voy a usar `comentario.php`, es una web tipo formulario para insertar texto, la cual presenta una vulnerabilidad de **Cross-Site Scripting (XSS)** debido a que los datos introducidos por el usuario se muestran en la página sin ningún tipo de validación ni sanitización.
+### Creación base de datos
+
+Primero creo la base de datos `jugadores` con la tabla `participantes` e inserto datos en las filas de `usuario` y `clave`.
+
+```sql
+CREATE DATABASE jugadores;
+USE jugadores;
+
+CREATE TABLE participantes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR(50) NOT NULL,
+    clave VARCHAR(255) NOT NULL);
+
+INSERT INTO participantes (usuario, clave)
+VALUES ('snake','1980'),
+       ('kratos','password');
+´´´
+
