@@ -132,7 +132,7 @@ Introduzco `' OR '1'='1' --`:
 
 Muestra del código modíficado con las mitigaciones aplicadas.
 
-![PHP1](./images/apartado_tres/login_seguro.png)
+![PHP2](./images/apartado_tres/login_seguro.png)
 
 **`login_seguro.php`**
 
@@ -341,6 +341,96 @@ $update = $conn->prepare("UPDATE usuarios SET failed_attempts=?, last_attempt=NO
 Para poder utilizar el sistema de autenticación seguro es necesario almacenar las contraseñas utilizando hash criptográfico en lugar de texto plano. 
 
 Para ello se ha desarrollado el archivo `agregar_usuario.php`, que permite registrar nuevos usuarios utilizando la función `password_hash()` de PHP. Esta función genera un hash seguro utilizando el algoritmo **bcrypt**, lo que impide recuperar la contraseña original incluso si un atacante accede a la base de datos.
+
+![PHP3](./images/apartado_tres/agregar_usuario.png)
+
+**`agregar_usuario.php`**
+
+```php
+<?php
+
+// ACTIVAR ERRORES
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+
+// CONEXIÓN A LA BASE DE DATOS
+$conn = new mysqli("database","root","tiger","jugadores");
+
+if($conn->connect_error){
+    die("Error de conexión: ".$conn->connect_error);
+}
+
+$message="";
+
+// CREAR USUARIO
+if($_SERVER["REQUEST_METHOD"]==="POST"){
+
+$username = trim($_POST["username"]);
+$password = $_POST["password"];
+
+if($username!=="" && $password!==""){
+
+// GENERAR HASH DE CONTRASEÑA
+$hash = password_hash($password, PASSWORD_DEFAULT);
+
+// CONSULTA PREPARADA
+$stmt = $conn->prepare("INSERT INTO participantes (usuario, clave) VALUES (?,?)");
+
+$stmt->bind_param("ss",$username,$hash);
+
+if($stmt->execute()){
+
+$message="Usuario creado correctamente";
+
+}else{
+
+$message="Error al crear usuario";
+
+}
+
+$stmt->close();
+
+}else{
+
+$message="Debe introducir usuario y contraseña";
+
+}
+
+}
+
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Crear usuario</title>
+</head>
+
+<body>
+
+<h1>Registro de usuario</h1>
+
+<?php if($message): ?>
+<p><?=htmlspecialchars($message)?></p>
+<?php endif; ?>
+
+<form method="post">
+
+<label>Usuario</label><br>
+<input type="text" name="username"><br><br>
+
+<label>Clave</label><br>
+<input type="password" name="password"><br><br>
+
+<button type="submit">Crear usuario</button>
+
+</form>
+
+</body>
+</html>
+```
 
 
 
