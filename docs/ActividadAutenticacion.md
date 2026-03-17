@@ -249,6 +249,99 @@ Explicación:
 
 Esto evita almacenar contraseñas en texto plano.
 
+### Mitigación 2 - Consultas preparadas
+
+Código aplicado:
+
+```php
+$stmt = $conn->prepare("SELECT contrasenya,failed_attempts,last_attempt FROM usuarios WHERE usuario=?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+```
+Explicación:
+
+Evita ataques de inyección SQL.
+
+### Mitigación 3 - Bloqueo de ataques de fuerza bruta y diccionarios
+
+**Comprobar intentos fallidos**
+
+Código aplicado:
+
+```php
+if($failed_attempts >= 3 && $last_attempt != NULL){);
+```
+Explicación:
+
+Si hay 3 o más intentos, posible bloqueo.
+
+**Calcular tiempo desde el último intento**
+
+Código aplicado:
+
+```php
+$current_time = time();
+$interval = $current_time - strtotime($last_attempt);
+```
+Explicación:
+
+Convierte la fecha de BD a timestamp y calcula diferencia.
+
+**Bloquear durante 15 minutos (900 segundos)**
+
+Código aplicado:
+
+```php
+if($interval < 900){
+    $message = "Cuenta bloqueada temporalmente";
+    $blocked = true;
+}
+```
+Explicación:
+
+Si no han pasado 15 min, cuenta bloqueada.
+
+**Si no está bloqueado verificar contraseña**
+
+Código aplicado:
+
+```php
+if(!$blocked){
+```
+Explicación:
+
+- **Caso 1:** Login correcto
+
+```php
+if(password_verify($password, $hash)){
+```
+
+Si la contraseña es correcta, reinicia contador y quita bloqueo.  
+
+```php
+$reset = $conn->prepare("UPDATE usuarios SET failed_attempts=0,last_attempt=NULL WHERE usuario=?");
+```
+
+- **Caso 2:** Login incorrecto  
+
+```php
+$failed_attempts++;
+```
+
+Suma un intento fallido y guarda número de intentos con hora del intento.
+
+```php
+$update = $conn->prepare("UPDATE usuarios SET failed_attempts=?, last_attempt=NOW() WHERE usuario=?");
+```
+
+---
+
+## 2.4 Creación segura de usuarios
+
+Para poder utilizar el sistema de autenticación seguro es necesario almacenar las contraseñas utilizando hash criptográfico en lugar de texto plano. 
+
+Para ello se ha desarrollado el archivo `agregar_usuario.php`, que permite registrar nuevos usuarios utilizando la función `password_hash()` de PHP. Esta función genera un hash seguro utilizando el algoritmo **bcrypt**, lo que impide recuperar la contraseña original incluso si un atacante accede a la base de datos.
+
 
 
 
