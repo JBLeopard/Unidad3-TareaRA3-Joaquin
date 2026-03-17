@@ -35,6 +35,8 @@ VALUES ('snake','1980'),
 
 ### Código vulnerable
 
+Muestra del código vulnerable.
+
 ![PHP1](./images/apartado_tres/login_debil.png)
 
 La aplicación utiliza el archivo login_debil.php para autenticar a los usuarios, este sistema presenta varias vulnerabilidades de seguridad relacionadas con la autenticación.
@@ -127,6 +129,125 @@ Introduzco `' OR '1'='1' --`:
 ---
 
 ## 2.3 Mitigación
+
+Muestra del código modíficado con las mitigaciones aplicadas.
+
+![PHP1](./images/apartado_tres/login_seguro.png)
+
+**`login_seguro.php`**
+
+```php
+<?php
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+
+session_start();
+
+// CONEXIÓN
+$conn = new mysqli("database","root","tiger","jugadores");
+
+if($conn->connect_error){
+    die("Error de conexión");
+}
+
+$message="";
+
+if($_SERVER["REQUEST_METHOD"]==="POST"){
+
+$username=$_POST["username"];
+$password=$_POST["password"];
+
+$stmt=$conn->prepare("SELECT clave,failed_attempts,last_attempt FROM participantes WHERE usuario=?");
+$stmt->bind_param("s",$username);
+$stmt->execute();
+$stmt->store_result();
+
+if($stmt->num_rows>0){
+
+$stmt->bind_result($hash,$failed_attempts,$last_attempt);
+$stmt->fetch();
+
+$current_time=time();
+$blocked=false;
+
+if($failed_attempts>=3 && $last_attempt!=NULL){
+
+$interval=$current_time-strtotime($last_attempt);
+
+if($interval<900){
+
+$message="Cuenta bloqueada temporalmente";
+$blocked=true;
+
+}
+
+}
+
+if(!$blocked){
+
+if(password_verify($password,$hash)){
+
+$message="Login correcto";
+
+$reset=$conn->prepare("UPDATE usuarios SET failed_attempts=0,last_attempt=NULL WHERE usuario=?");
+$reset->bind_param("s",$username);
+$reset->execute();
+
+}else{
+
+$failed_attempts++;
+
+$message="Clave incorrecta";
+
+$update=$conn->prepare("UPDATE participantes SET failed_attempts=?,last_attempt=NOW() WHERE usuario=?");
+$update->bind_param("is",$failed_attempts,$username);
+$update->execute();
+
+}
+
+}
+
+}else{
+
+$message="Usuario no encontrado";
+
+}
+
+$stmt->close();
+}
+
+$conn->close();
+?>
+
+<h1>Login seguro</h1>
+
+<?php if($message): ?>
+<p><?=htmlspecialchars($message)?></p>
+<?php endif; ?>
+
+<form method="post">
+
+<label>Usuario</label><br>
+<input type="text" name="username"><br><br>
+
+<label>Clave</label><br>
+<input type="password" name="password"><br><br>
+
+<button type="submit">Login</button>
+
+</form>
+```
+
+### Mitigación 1 - Uso de contraseñas hasheadas
+
+Código aplicado:
+
+```sql
+$hash = password_hash($password, PASSWORD_DEFAULT);
+```
+Explicación:
+
+Esto evita almacenar contraseñas en texto plano.
 
 
 
