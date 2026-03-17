@@ -1,4 +1,4 @@
-# 2. Documentación de autenticación, vulnerabilidades de gestión de sesiones, protección de datos sensibles o Control de acceso
+# 3. Documentación de autenticación, vulnerabilidades de gestión de sesiones, protección de datos sensibles o Control de acceso
 
 En esta sección se analiza una vulnerabilidad de autenticación débil **(Broken Authentication)** presente en una aplicación web desarrollada en PHP.  
 
@@ -11,7 +11,7 @@ Se muestra:
 
 ---
 
-## 2.1 Base de datos y código vulnerable
+## 3.1 Base de datos y código vulnerable
 
 ### Creación base de datos
 
@@ -102,7 +102,7 @@ Este sistema tiene varios problemas:
 
 ---
 
-## 2.2 Explotación, ataque de fuerza bruta con Hydra e inyección SQL
+## 3.2 Explotación, ataque de fuerza bruta con Hydra e inyección SQL
 
 ### Hydra
 
@@ -131,7 +131,7 @@ Introduzco `' OR '1'='1' --`:
 
 ---
 
-## 2.3 Mitigación
+## 3.3 Mitigación
 
 Muestra del código modíficado con las mitigaciones aplicadas.
 
@@ -354,7 +354,7 @@ $update = $conn->prepare("UPDATE participantes SET failed_attempts=?, last_attem
 
 ---
 
-## 2.4 Creación segura de usuarios
+## 3.4 Creación segura de usuarios
 
 Para poder utilizar el sistema de autenticación seguro es necesario almacenar las contraseñas utilizando hash criptográfico en lugar de texto plano. 
 
@@ -456,7 +456,7 @@ Prueba creación nuevo usuario:
 
 ---
 
-## 2.5 Batería de pruebas
+## 3.5 Batería de pruebas
 
 Tras aplicar las mitigaciones se realizaron varias pruebas para comprobar el comportamiento de la aplicación.
 
