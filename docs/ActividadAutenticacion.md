@@ -242,7 +242,7 @@ $conn->close();
 
 Código aplicado:
 
-```sql
+```php
 $hash = password_hash($password, PASSWORD_DEFAULT);
 ```
 Explicación:
