@@ -89,6 +89,31 @@ $conn->close();
 </form>
 ```
 
+**Explicación de las vulnerabilidades**  
+
+Este sistema tiene varios problemas:  
+
+- **Contraseñas en texto plano**, en la base de datos se guardan así: `snake | 1980`.
+- **SQL Injection**, la consulta usa variables directamente: `$query = "SELECT * FROM usuarios WHERE usuario='$username' AND clave='$password'";`, un atacante puede introducir `' OR '1'='1`.
+- **Sin protección contra fuerza bruta**, el sistema permite infinitos intentos de login.
+
+---
+
+## 2.2 Explotación, ataque de fuerza bruta con Hydra
+
+Cuando ejecuto Hydra desde la terminal de mi máquina atacante, mientras se está ejecutando:
+
+- Hydra envía miles de peticiones POST.
+- La web las procesa automáticamente.
+- No necesita mi intervención en el formulario.
+
+
+
+
+
+
+
+
 
 
 
