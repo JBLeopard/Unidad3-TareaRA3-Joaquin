@@ -35,7 +35,7 @@ VALUES ('snake','1980'),
 
 ### Código vulnerable
 
-![PHP](./images/apartado_tres/login_debil.png)
+![PHP1](./images/apartado_tres/login_debil.png)
 
 La aplicación utiliza el archivo login_debil.php para autenticar a los usuarios, este sistema presenta varias vulnerabilidades de seguridad relacionadas con la autenticación.
 
@@ -106,6 +106,10 @@ Cuando ejecuto Hydra desde la terminal de mi máquina atacante, mientras se est�
 - Hydra envía miles de peticiones POST.
 - La web las procesa automáticamente.
 - No necesita mi intervención en el formulario.
+
+![HYDRA1](./images/apartado_tres/hydra1.png)
+![HYDRA1](./images/apartado_tres/hydra2.png)
+
 
 
 
