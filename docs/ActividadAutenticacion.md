@@ -99,7 +99,9 @@ Este sistema tiene varios problemas:
 
 ---
 
-## 2.2 Explotación, ataque de fuerza bruta con Hydra
+## 2.2 Explotación, ataque de fuerza bruta con Hydra e inyección SQL
+
+### Hydra
 
 Cuando ejecuto Hydra desde la terminal de mi máquina atacante, mientras se está ejecutando:
 
@@ -109,6 +111,24 @@ Cuando ejecuto Hydra desde la terminal de mi máquina atacante, mientras se est�
 
 ![HYDRA1](./images/apartado_tres/hydra1.png)
 ![HYDRA1](./images/apartado_tres/hydra2.png)
+
+Como podemos observar después de ejecutar la herramienta Hydra encuentra la clave en la linea: `[80][http-post-form] host: localhost   login: admin   password: leopard`.  
+
+### Inyección SQL
+
+Introduzco `' OR '1'='1' --`:
+
+- `'` cierra la cadena original del campo usuario.
+- `OR '1'='1'` añade una condición siempre verdadera.
+- `--` comenta el resto de la consulta (ignora la contraseña).
+
+![ISQL](./images/apartado_tres/isql.png)
+
+---
+
+## 2.3 Mitigación
+
+
 
 
 
