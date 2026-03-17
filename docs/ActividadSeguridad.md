@@ -45,3 +45,40 @@ Se crea un proyecto en Node.js e instalamos librerías con versiones conocidas p
 
 ---
 
+### Análisis de la vulnerabilidad
+
+El informe muestra múltiples dependencias con vulnerabilidades, por ejemplo:
+
+lodash 4.17.15
+
+Vulnerabilidad: Prototype Pollution
+
+Severidad: Alta (CVSS ~7.4)
+
+debug 2.6.9
+
+Vulnerabilidades relacionadas con exposición de información.
+
+Estas vulnerabilidades pueden permitir:
+
+Ejecución de código no autorizado.
+
+Manipulación de objetos en la aplicación.
+
+Fugas de información sensible.
+
+
+---
+
+
+## 4.3 Mitigación
+
+A continuación muestro las soluciones aplicadas.
+
+### Mitigación 1 - Actualización de dependencias
+
+
+
+
+
+### Mitigación 2 - Auditoría y verificación de seguridad
