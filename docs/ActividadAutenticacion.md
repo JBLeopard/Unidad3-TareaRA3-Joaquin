@@ -500,7 +500,13 @@ Acción realizada: intentar iniciar sesión con la contraseña correcta después
  - Resultado esperado: el sistema debe impedir el acceso y mostrar el mensaje de cuenta bloqueada.
  - Resultado observado: el acceso es rechazado correctamente mientras dura el periodo de bloqueo.
 
-![PRUEBA4](./images/apartado_tres/prueba4.png)
+![PRUEBA4A](./images/apartado_tres/prueba4a.png)
+
+Tengo la clave guardada pero hasta 15 minutos después de las 14:17 no me deja entrar con mis credenciales correctas.
+
+![PRUEBA4B](./images/apartado_tres/prueba4b.png)
+
+Aquí ya se ve como puedo entrar después del tiempo programado de bloqueo.
 
 ---
 
