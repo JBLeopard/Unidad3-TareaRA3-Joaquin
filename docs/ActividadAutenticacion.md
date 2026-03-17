@@ -241,7 +241,7 @@ $conn->close();
 </form>
 ```
 
-Además hay que agregar las siguientes tablas `failed_attempts` y ` last_attempt` a la bd para que el login seguro funcione:
+Además hay que agregar las siguientes columnas `failed_attempts` y ` last_attempt` a la tabla `participantes` para que el login seguro funcione:
 
 ```sql
 ALTER TABLE participantes 
