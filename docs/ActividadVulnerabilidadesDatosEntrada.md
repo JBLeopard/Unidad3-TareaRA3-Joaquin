@@ -72,6 +72,8 @@ $comment = $_POST['comment'];
 - Esto permite que un atacante introduzca código HTML o JavaScript que será ejecutado por el navegador del usuario, así es como funciona la vulnerabilidad **Cross-Site Scripting (XSS)**.
 ---
 
+## 2.2 Explotación
+
 ### Explotación 1 - XSS clásico
 
 A continuación se muestra la explotación 1.
@@ -128,7 +130,7 @@ En mi caso utilizo [fakeupdate.net](https://fakeupdate.net/win10ue/), una de sus
 ---
 
 
-## 2.2 Mitigación
+## 2.3 Mitigación
 
 Muestra del código modíficado con las mitigaciones aplicadas.
 
@@ -331,7 +333,7 @@ Esto impide que el navegador ejecute el contenido como código.
 
 ---
 
-## 2.3 Batería de pruebas
+## 2.4 Batería de pruebas
 
 Tras aplicar las mitigaciones se realizaron varias pruebas para comprobar el comportamiento de la aplicación.
 
