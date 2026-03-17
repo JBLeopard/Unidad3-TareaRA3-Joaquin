@@ -33,7 +33,9 @@ VALUES ('snake','1980'),
        ('kratos','password');
 ```
 
-### Creación base de datos
+### Código vulnerable
+
+![PHP](./images/apartado_tres/login_debil.png)
 
 La aplicación utiliza el archivo login_debil.php para autenticar a los usuarios, este sistema presenta varias vulnerabilidades de seguridad relacionadas con la autenticación.
 
