@@ -32,6 +32,7 @@ INSERT INTO participantes (usuario, clave)
 VALUES ('snake','1980'),
        ('admin','leopard');
 ```
+---
 
 ### Código vulnerable
 
@@ -115,6 +116,8 @@ Cuando ejecuto Hydra desde la terminal de mi máquina atacante, mientras se est�
 ![HYDRA1](./images/apartado_tres/hydra2.png)
 
 Como podemos observar después de ejecutar la herramienta Hydra encuentra la clave en la linea: `[80][http-post-form] host: localhost   login: admin   password: leopard`.  
+
+---
 
 ### Inyección SQL
 
@@ -238,6 +241,9 @@ $conn->close();
 </form>
 ```
 
+---
+
+
 ### Mitigación 1 - Uso de contraseñas hasheadas
 
 Código aplicado:
@@ -248,6 +254,8 @@ $hash = password_hash($password, PASSWORD_DEFAULT);
 Explicación:
 
 Esto evita almacenar contraseñas en texto plano.
+
+---
 
 ### Mitigación 2 - Consultas preparadas
 
@@ -261,6 +269,8 @@ $stmt->execute();
 Explicación:
 
 Evita ataques de inyección SQL.
+
+---
 
 ### Mitigación 3 - Bloqueo de ataques de fuerza bruta y diccionarios
 
@@ -432,8 +442,59 @@ $conn->close();
 </html>
 ```
 
+Prueba creación nuevo usuario:
 
+![USER](./images/apartado_tres/usuario.png)
 
+---
+
+## 2.5 Batería de pruebas
+
+Tras aplicar las mitigaciones se realizaron varias pruebas para comprobar el comportamiento de la aplicación.
+
+**Prueba 1 - Contraseña incorrecta**
+
+ - Objetivo de la prueba: verificar que el sistema detecta credenciales incorrectas.
+ - Resultado esperado: el sistema debe mostrar el mensaje "Contraseña incorrecta" y registrar el intento fallido.
+ - Resultado observado: la aplicación muestra el mensaje correctamente y aumenta el contador de intentos fallidos.
+
+![PRUEBA1](./images/apartado_tres/prueba1.png)
+
+---
+
+**Prueba 2 - Bloqueo de cuenta por intentos fallidos**
+
+ - Objetivo de la prueba: comprobar que el sistema bloquea temporalmente la cuenta tras varios intentos fallidos..
+ - Resultado esperado: el sistema debe bloquear la cuenta durante 15 minutos y mostrar el mensaje "Cuenta bloqueada temporalmente".
+ - Resultado observado: la cuenta queda bloqueada correctamente tras los intentos fallidos y se muestra el mensaje esperado.
+
+![PRUEBA2](./images/apartado_tres/prueba2.png)
+
+---
+
+**Prueba 3 - Intento de SQL Injection**
+
+Payload: `' OR '1'='1' --`.
+
+ - Objetivo de la prueba: comprobar que el sistema es resistente a ataques de inyección SQL.
+ - Resultado esperado: el sistema no debe permitir el acceso y debe tratar la entrada como un valor literal.
+ - Resultado observado: el acceso es rechazado correctamente y no se produce la inyección SQL.
+
+![PRUEBA3](./images/apartado_tres/prueba3.png)
+
+---
+
+**Prueba 4 - Intento de acceso durante el bloqueo**
+
+Acción realizada: intentar iniciar sesión con la contraseña correcta después de que la cuenta haya sido bloqueada.
+
+ - Objetivo de la prueba: verificar que el bloqueo se aplica incluso con credenciales válidas.
+ - Resultado esperado: el sistema debe impedir el acceso y mostrar el mensaje de cuenta bloqueada.
+ - Resultado observado: el acceso es rechazado correctamente mientras dura el periodo de bloqueo.
+
+![PRUEBA4](./images/apartado_tres/prueba4.png)
+
+---
 
 
 
