@@ -1,6 +1,6 @@
-# 4. Documentación de autenticación, vulnerabilidades de gestión de sesiones, protección de datos sensibles o Control de acceso
+# 4. Documentación de errores en la Seguridad y componentes vulnerables
 
-En esta sección se analiza una vulnerabilidad de autenticación débil **(Broken Authentication)** presente en una aplicación web desarrollada en PHP.  
+En esta actividad se analiza la presencia de **dependencias vulnerables** en un proyecto `Node.js` utilizando la herramienta **OWASP Dependency-Check**.  
 
 Se muestra:  
 
