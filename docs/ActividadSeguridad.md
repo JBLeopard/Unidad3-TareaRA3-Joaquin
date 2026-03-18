@@ -79,7 +79,7 @@ Al instalarlo crea un archivo `package-lock.json` con todas las dependencias que
 }
 ```
 
-Posteriormente se ejecuta la herramienta Dependency-Check que al general el archvo dependency-check-report.hmtl que inspeccionaré en el siguiente apartado.
+Posteriormente se ejecuta la herramienta **Dependency-Check** que genera el archvo `dependency-check-report.html` que inspeccionaré en el siguiente apartado.
 
 ![ODC2](./images/apartado_cuatro/odc2.png)
 
