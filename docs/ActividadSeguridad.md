@@ -112,14 +112,22 @@ A continuación muestro las soluciones aplicadas.
 
 ### Mitigación 1 - Actualización de dependencias
 
+- Se actualizan todas las librerías a versiones actualizando las dependencias a sus versiones más recientes, de esta forma se eliminan vulnerabilidades conocidas presentes en versiones antiguas.
+- Además, el comando `npm audit fix` corrige automáticamente problemas de seguridad detectados por npm.
+
 ![MIT1](./images/apartado_cuatro/mit1.png)
 
-
+---
 
 ### Mitigación 2 - Auditoría y verificación de seguridad
 
+- Realizo una auditoría del proyecto tras la actualización con `npm audit` y vuelvo a ejecutar **Dependency-Check** para verificar:
 
 ![MIT2](./images/apartado_cuatro/mit2.png)
+
+- Se verifica que las vulnerabilidades han sido mitigadas mediante herramientas de auditoría mediante el informe.
+- Con esto queda demostrado que el uso de análisis continuo permite detectar dependencias inseguras antes de que lleguen a producción.
+
 ![MIT3](./images/apartado_cuatro/mit3.png)
 
 ---
