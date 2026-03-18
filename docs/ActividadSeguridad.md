@@ -92,23 +92,13 @@ Posteriormente se ejecuta la herramienta **Dependency-Check** que genera el arch
 
 El informe muestra múltiples dependencias con vulnerabilidades, por ejemplo:
 
-lodash 4.17.15
+**`lodash 4.17.15`**
 
-Vulnerabilidad: Prototype Pollution
+- Vulnerabilidad: ***Prototype Pollution***
+- Severidad: Alta (CVSS ~7.4)
 
-Severidad: Alta (CVSS ~7.4)
+Estas vulnerabilidades pueden permitir ejecución de código no autorizado, Manipulación de objetos en la aplicación y fugas de información sensible.
 
-debug 2.6.9
-
-Vulnerabilidades relacionadas con exposición de información.
-
-Estas vulnerabilidades pueden permitir:
-
-Ejecución de código no autorizado.
-
-Manipulación de objetos en la aplicación.
-
-Fugas de información sensible.
 ![ODC4](./images/apartado_cuatro/odc4.png)
 ![ODC5](./images/apartado_cuatro/odc5.png)
 ![ODC6](./images/apartado_cuatro/odc6.png)
