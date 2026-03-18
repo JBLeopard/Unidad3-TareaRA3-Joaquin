@@ -51,8 +51,8 @@ Nosotros lo vamos a modificar para que no nos aparezcan tantos resultados, lo de
 
 [PLJ](./images/apartado_cuatro/pljson.png)
 
-package-lock.json
 
+**`package-lock.json`**
 
 ```json
 {
@@ -111,7 +111,9 @@ Ejecución de código no autorizado.
 Manipulación de objetos en la aplicación.
 
 Fugas de información sensible.
-
+[ODC4](./images/apartado_cuatro/odc4.png)
+[ODC5](./images/apartado_cuatro/odc5.png)
+[ODC6](./images/apartado_cuatro/odc6.png)
 
 ---
 
@@ -122,8 +124,15 @@ A continuación muestro las soluciones aplicadas.
 
 ### Mitigación 1 - Actualización de dependencias
 
-
+[MIT1](./images/apartado_cuatro/mit1.png)
 
 
 
 ### Mitigación 2 - Auditoría y verificación de seguridad
+
+
+[MIT2](./images/apartado_cuatro/mit2.png)
+[MIT3](./images/apartado_cuatro/mit3.png)
+
+---
+
