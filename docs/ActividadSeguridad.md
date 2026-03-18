@@ -109,9 +109,9 @@ Ejecución de código no autorizado.
 Manipulación de objetos en la aplicación.
 
 Fugas de información sensible.
-[ODC4](./images/apartado_cuatro/odc4.png)
-[ODC5](./images/apartado_cuatro/odc5.png)
-[ODC6](./images/apartado_cuatro/odc6.png)
+![ODC4](./images/apartado_cuatro/odc4.png)
+![ODC5](./images/apartado_cuatro/odc5.png)
+![ODC6](./images/apartado_cuatro/odc6.png)
 
 ---
 
