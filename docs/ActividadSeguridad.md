@@ -17,7 +17,7 @@ A continuación muestro la instalación de la herramienta de código abierto de 
 
 ### Instalación OWASP Dependency-Check
 
-![OWASP](./images/apartado_cuatro/owasp.png)
+![ODC](./images/apartado_cuatro/odc.png)
 
 ---
 
@@ -41,7 +41,52 @@ Para verificar vulnerabilidades en las dependencias de un proyecto basado en Nod
 
 Se crea un proyecto en Node.js e instalamos librerías con versiones conocidas por contener vulnerabilidades.
 
-![NODEJS](./images/apartado_cuatro/nodejs2.png)
+![NODEJS2](./images/apartado_cuatro/nodejs2.png)
+
+[ODC1](./images/apartado_cuatro/odc1.png)
+
+Además nos crea un archivo package-lock.json con todas las dependencias que utiliza.
+
+Nosotros lo vamos a modificar para que no nos aparezcan tantos resultados, lo dejaremos sólo con los paquetes principales:
+
+[PLJ](./images/apartado_cuatro/pljson.png)
+
+package-lock.json
+
+
+```json
+{
+  "name": "example-project",
+  "version": "1.0.0",
+  "lockfileVersion": 2,
+  "requires": true,
+  "dependencies": {
+    "lodash": {
+      "version": "4.17.15",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz",
+      "integrity": "sha512-f3139c447bc28e7a1c752e5ca705d05d5ce69a1e5ee7eb1a136406a1e4266ca9914ba277550a693ce22dd0c9e613ee31959a2e9b2d063c6d03d0c54841b340d4==",
+      "dev": false
+    },
+    "express": {
+      "version": "4.17.1",
+      "resolved": "https://registry.npmjs.org/express/-/express-4.17.1.tgz",
+      "integrity": "sha512-f3139c447bc28e7a1c752e5ca705d05d5ce69a1e5ee7eb1a136406a1e4266ca9914ba277550a693ce22dd0c9e613ee31959a2e9b2d063c6d03d0c54841b340d4==",
+      "dev": false
+    },
+    "debug": {
+      "version": "2.6.9",
+      "resolved": "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz",
+      "integrity": "sha512-f3139c447bc28e7a1c752e5ca705d05d5ce69a1e5ee7eb1a136406a1e4266ca9914ba277550a693ce22dd0c9e613ee31959a2e9b2d063c6d03d0c54841b340d4==",
+      "dev": false
+    }
+  }
+}
+```
+
+[ODC2](./images/apartado_cuatro/odc2.png)
+
+[ODC3](./images/apartado_cuatro/odc3.png)
+
 
 ---
 
