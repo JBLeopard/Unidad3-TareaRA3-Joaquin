@@ -29,7 +29,7 @@ A continuación muestro la instalación de la herramienta de código abierto de 
 
 ## 4.2 Análisis de proyecto en Node.js
 
-### Instalación Node,js
+### Instalación Node.js
 
 Para verificar vulnerabilidades en las dependencias de un proyecto basado en Node.js, nstalamos `nodejs` y `npm`:
 
