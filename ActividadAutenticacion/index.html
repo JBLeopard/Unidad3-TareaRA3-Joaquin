@@ -1,0 +1,1236 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación de la actividad de la Unidad 3">
+      
+      
+        <meta name="author" content="JBLeopard">
+      
+      
+      
+        <link rel="prev" href="../ActividadVulnerabilidadesDatosEntrada/">
+      
+      
+        <link rel="next" href="../ActividadSeguridad/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Autenticación, vulnerabilidades de gestión de sesiones, protección de datos sensibles o Control de acceso - Unidad3-TareaRA3-Joaquin</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-documentacion-de-autenticacion-vulnerabilidades-de-gestion-de-sesiones-proteccion-de-datos-sensibles-o-control-de-acceso" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Unidad3-TareaRA3-Joaquin" class="md-header__button md-logo" aria-label="Unidad3-TareaRA3-Joaquin" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Unidad3-TareaRA3-Joaquin
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Autenticación, vulnerabilidades de gestión de sesiones, protección de datos sensibles o Control de acceso
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Unidad3-TareaRA3-Joaquin" class="md-nav__button md-logo" aria-label="Unidad3-TareaRA3-Joaquin" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Unidad3-TareaRA3-Joaquin
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CreacionEntornoPrueba/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creación del entorno de Pruebas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ActividadVulnerabilidadesDatosEntrada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnerabilidades de inyección de datos de entrada
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autenticación, vulnerabilidades de gestión de sesiones, protección de datos sensibles o Control de acceso
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autenticación, vulnerabilidades de gestión de sesiones, protección de datos sensibles o Control de acceso
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-base-de-datos-y-codigo-vulnerable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Base de datos y código vulnerable
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Base de datos y código vulnerable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creacion-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creación base de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-vulnerable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Código vulnerable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-explotacion-ataque-de-fuerza-bruta-con-hydra-e-inyeccion-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Explotación, ataque de fuerza bruta con Hydra e inyección SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 Explotación, ataque de fuerza bruta con Hydra e inyección SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hydra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hydra
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inyeccion-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inyección SQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-mitigacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Mitigación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Mitigación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mitigacion-1-uso-de-contrasenas-hasheadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitigación 1 - Uso de contraseñas hasheadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mitigacion-2-consultas-preparadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitigación 2 - Consultas preparadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mitigacion-3-bloqueo-de-ataques-de-fuerza-bruta-y-diccionarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitigación 3 - Bloqueo de ataques de fuerza bruta y diccionarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-creacion-segura-de-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Creación segura de usuarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-bateria-de-pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Batería de pruebas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ActividadSeguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errores en la Seguridad y componentes vulnerables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EscaneoApp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escaneo estático y dinámico de aplicación web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-base-de-datos-y-codigo-vulnerable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Base de datos y código vulnerable
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Base de datos y código vulnerable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creacion-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creación base de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-vulnerable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Código vulnerable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-explotacion-ataque-de-fuerza-bruta-con-hydra-e-inyeccion-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Explotación, ataque de fuerza bruta con Hydra e inyección SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 Explotación, ataque de fuerza bruta con Hydra e inyección SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hydra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hydra
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inyeccion-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inyección SQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-mitigacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Mitigación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Mitigación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mitigacion-1-uso-de-contrasenas-hasheadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitigación 1 - Uso de contraseñas hasheadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mitigacion-2-consultas-preparadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitigación 2 - Consultas preparadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mitigacion-3-bloqueo-de-ataques-de-fuerza-bruta-y-diccionarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitigación 3 - Bloqueo de ataques de fuerza bruta y diccionarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-creacion-segura-de-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Creación segura de usuarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-bateria-de-pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Batería de pruebas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="3-documentacion-de-autenticacion-vulnerabilidades-de-gestion-de-sesiones-proteccion-de-datos-sensibles-o-control-de-acceso">3. Documentación de autenticación, vulnerabilidades de gestión de sesiones, protección de datos sensibles o Control de acceso<a class="headerlink" href="#3-documentacion-de-autenticacion-vulnerabilidades-de-gestion-de-sesiones-proteccion-de-datos-sensibles-o-control-de-acceso" title="Permanent link">&para;</a></h1>
+<p>En esta sección se analiza una vulnerabilidad de autenticación débil <strong>(Broken Authentication)</strong> presente en una aplicación web desarrollada en PHP.  </p>
+<p>Se muestra:  </p>
+<ul>
+<li>El <strong>código vulnerable del sistema de autenticación</strong>.</li>
+<li>La <strong>explotación mediante ataques de fuerza bruta</strong>.</li>
+<li>La <strong>implementación de mitigaciones de seguridad</strong>.</li>
+<li>Una <strong>batería de pruebas</strong> para verificar las soluciones aplicadas.</li>
+</ul>
+<hr />
+<h2 id="31-base-de-datos-y-codigo-vulnerable">3.1 Base de datos y código vulnerable<a class="headerlink" href="#31-base-de-datos-y-codigo-vulnerable" title="Permanent link">&para;</a></h2>
+<h3 id="creacion-base-de-datos">Creación base de datos<a class="headerlink" href="#creacion-base-de-datos" title="Permanent link">&para;</a></h3>
+<p>Primero creo la base de datos <code>jugadores</code> con la tabla <code>participantes</code> e inserto datos en las filas de <code>usuario</code> y <code>clave</code>.</p>
+<p><img alt="SQL" src="../images/apartado_tres/sql.png" /></p>
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">jugadores</span><span class="p">;</span>
+<span class="n">USE</span><span class="w"> </span><span class="n">jugadores</span><span class="p">;</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">participantes</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">usuario</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">clave</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">participantes</span><span class="w"> </span><span class="p">(</span><span class="n">usuario</span><span class="p">,</span><span class="w"> </span><span class="n">clave</span><span class="p">)</span>
+<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;snake&#39;</span><span class="p">,</span><span class="s1">&#39;1980&#39;</span><span class="p">),</span>
+<span class="w">       </span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span><span class="s1">&#39;leopard&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<hr />
+<h3 id="codigo-vulnerable">Código vulnerable<a class="headerlink" href="#codigo-vulnerable" title="Permanent link">&para;</a></h3>
+<p>Muestra del código vulnerable.</p>
+<p><img alt="PHP1" src="../images/apartado_tres/login_debil.png" /></p>
+<p>La aplicación utiliza el archivo login_debil.php para autenticar a los usuarios, este sistema presenta varias vulnerabilidades de seguridad relacionadas con la autenticación.</p>
+<p><strong><code>login_debil.php</code></strong></p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">// ACTIVAR ERRORES</span>
+<span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+
+<span class="c1">// CONEXIÓN A BASE DE DATOS</span>
+<span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;tiger&quot;</span><span class="p">,</span> <span class="s2">&quot;jugadores&quot;</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Error de conexión: &quot;</span> <span class="o">.</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// PROCESAR PETICIÓN</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&quot;POST&quot;</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nv">$username</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">];</span>
+    <span class="nv">$password</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">];</span>
+
+    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Usuario introducido: </span><span class="si">$username</span><span class="s2">&lt;/p&gt;&quot;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Clave introducida: </span><span class="si">$password</span><span class="s2">&lt;/p&gt;&quot;</span><span class="p">;</span>
+
+    <span class="c1">// CONSULTA INSEGURA</span>
+    <span class="nv">$query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM participantes WHERE usuario=&#39;</span><span class="si">$username</span><span class="s2">&#39; AND clave=&#39;</span><span class="si">$password</span><span class="s2">&#39;&quot;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Consulta SQL: </span><span class="si">$query</span><span class="s2">&lt;/p&gt;&quot;</span><span class="p">;</span>
+
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">num_rows</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">&quot;&lt;h2&gt;Inicio de sesión exitoso&lt;/h2&gt;&quot;</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">&quot;&lt;h2&gt;Usuario o contraseña incorrectos&lt;/h2&gt;&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+
+<span class="x">&lt;h1&gt;Login vulnerable&lt;/h1&gt;</span>
+
+<span class="x">&lt;form method=&quot;post&quot;&gt;</span>
+<span class="x">&lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;Usuario&quot;&gt;&lt;br&gt;&lt;br&gt;</span>
+<span class="x">&lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Clave&quot;&gt;&lt;br&gt;&lt;br&gt;</span>
+<span class="x">&lt;button type=&quot;submit&quot;&gt;Login&lt;/button&gt;</span>
+<span class="x">&lt;/form&gt;</span>
+</code></pre></div>
+
+<p><strong>Explicación de las vulnerabilidades</strong>  </p>
+<p>Este sistema tiene varios problemas:  </p>
+<ul>
+<li><strong>Contraseñas en texto plano</strong>, en la base de datos se guardan así: <code>snake | 1980</code>.</li>
+<li><strong>SQL Injection</strong>, la consulta usa variables directamente: <code>$query = "SELECT * FROM participantes WHERE usuario='$username' AND clave='$password'";</code>, un atacante puede introducir <code>' OR '1'='1</code>.</li>
+<li><strong>Sin protección contra fuerza bruta</strong>, el sistema permite infinitos intentos de login.</li>
+</ul>
+<hr />
+<h2 id="32-explotacion-ataque-de-fuerza-bruta-con-hydra-e-inyeccion-sql">3.2 Explotación, ataque de fuerza bruta con Hydra e inyección SQL<a class="headerlink" href="#32-explotacion-ataque-de-fuerza-bruta-con-hydra-e-inyeccion-sql" title="Permanent link">&para;</a></h2>
+<h3 id="hydra">Hydra<a class="headerlink" href="#hydra" title="Permanent link">&para;</a></h3>
+<p>Cuando ejecuto Hydra desde la terminal de mi máquina atacante, mientras se está ejecutando:</p>
+<ul>
+<li>Hydra envía miles de peticiones POST.</li>
+<li>La web las procesa automáticamente.</li>
+<li>No necesita mi intervención en el formulario.</li>
+</ul>
+<p><img alt="HYDRA1" src="../images/apartado_tres/hydra1.png" />
+<img alt="HYDRA1" src="../images/apartado_tres/hydra2.png" /></p>
+<p>Como podemos observar después de ejecutar la herramienta Hydra encuentra la clave en la linea: <code>[80][http-post-form] host: localhost   login: admin   password: leopard</code>.  </p>
+<hr />
+<h3 id="inyeccion-sql">Inyección SQL<a class="headerlink" href="#inyeccion-sql" title="Permanent link">&para;</a></h3>
+<p>Introduzco <code>' OR '1'='1' --</code>:</p>
+<ul>
+<li><code>'</code> cierra la cadena original del campo usuario.</li>
+<li><code>OR '1'='1'</code> añade una condición siempre verdadera.</li>
+<li><code>--</code> comenta el resto de la consulta (ignora la contraseña).</li>
+</ul>
+<p><img alt="ISQL" src="../images/apartado_tres/isql.png" /></p>
+<hr />
+<h2 id="33-mitigacion">3.3 Mitigación<a class="headerlink" href="#33-mitigacion" title="Permanent link">&para;</a></h2>
+<p>Muestra del código modíficado con las mitigaciones aplicadas.</p>
+<p><img alt="PHP2" src="../images/apartado_tres/login_seguro.png" /></p>
+<p><strong><code>login_seguro.php</code></strong></p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+
+<span class="nb">session_start</span><span class="p">();</span>
+
+<span class="c1">// CONEXIÓN</span>
+<span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">,</span><span class="s2">&quot;root&quot;</span><span class="p">,</span><span class="s2">&quot;tiger&quot;</span><span class="p">,</span><span class="s2">&quot;jugadores&quot;</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">){</span>
+    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Error de conexión&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nv">$message</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span><span class="o">===</span><span class="s2">&quot;POST&quot;</span><span class="p">){</span>
+
+<span class="nv">$username</span><span class="o">=</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">];</span>
+<span class="nv">$password</span><span class="o">=</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">];</span>
+
+<span class="nv">$stmt</span><span class="o">=</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT clave,failed_attempts,last_attempt FROM participantes WHERE usuario=?&quot;</span><span class="p">);</span>
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span><span class="nv">$username</span><span class="p">);</span>
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">store_result</span><span class="p">();</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">num_rows</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_result</span><span class="p">(</span><span class="nv">$hash</span><span class="p">,</span><span class="nv">$failed_attempts</span><span class="p">,</span><span class="nv">$last_attempt</span><span class="p">);</span>
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">();</span>
+
+<span class="nv">$current_time</span><span class="o">=</span><span class="nb">time</span><span class="p">();</span>
+<span class="nv">$blocked</span><span class="o">=</span><span class="k">false</span><span class="p">;</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$failed_attempts</span><span class="o">&gt;=</span><span class="mi">3</span> <span class="o">&amp;&amp;</span> <span class="nv">$last_attempt</span><span class="o">!=</span><span class="k">NULL</span><span class="p">){</span>
+
+<span class="nv">$interval</span><span class="o">=</span><span class="nv">$current_time</span><span class="o">-</span><span class="nb">strtotime</span><span class="p">(</span><span class="nv">$last_attempt</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$interval</span><span class="o">&lt;</span><span class="mi">900</span><span class="p">){</span>
+
+<span class="nv">$message</span><span class="o">=</span><span class="s2">&quot;Cuenta bloqueada temporalmente&quot;</span><span class="p">;</span>
+<span class="nv">$blocked</span><span class="o">=</span><span class="k">true</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nv">$blocked</span><span class="p">){</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nb">password_verify</span><span class="p">(</span><span class="nv">$password</span><span class="p">,</span><span class="nv">$hash</span><span class="p">)){</span>
+
+<span class="nv">$message</span><span class="o">=</span><span class="s2">&quot;Login correcto&quot;</span><span class="p">;</span>
+
+<span class="nv">$reset</span><span class="o">=</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;UPDATE participantes SET failed_attempts=0,last_attempt=NULL WHERE usuario=?&quot;</span><span class="p">);</span>
+<span class="nv">$reset</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span><span class="nv">$username</span><span class="p">);</span>
+<span class="nv">$reset</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+
+<span class="nv">$failed_attempts</span><span class="o">++</span><span class="p">;</span>
+
+<span class="nv">$message</span><span class="o">=</span><span class="s2">&quot;Clave incorrecta&quot;</span><span class="p">;</span>
+
+<span class="nv">$update</span><span class="o">=</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;UPDATE participantes SET failed_attempts=?,last_attempt=NOW() WHERE usuario=?&quot;</span><span class="p">);</span>
+<span class="nv">$update</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;is&quot;</span><span class="p">,</span><span class="nv">$failed_attempts</span><span class="p">,</span><span class="nv">$username</span><span class="p">);</span>
+<span class="nv">$update</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+
+<span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+
+<span class="nv">$message</span><span class="o">=</span><span class="s2">&quot;Usuario no encontrado&quot;</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+
+<span class="x">&lt;h1&gt;Login seguro&lt;/h1&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">if</span><span class="p">(</span><span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+<span class="x">&lt;p&gt;</span><span class="cp">&lt;?</span><span class="o">=</span><span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$message</span><span class="p">)</span><span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
+
+<span class="x">&lt;form method=&quot;post&quot;&gt;</span>
+
+<span class="x">&lt;label&gt;Usuario&lt;/label&gt;&lt;br&gt;</span>
+<span class="x">&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;&lt;br&gt;&lt;br&gt;</span>
+
+<span class="x">&lt;label&gt;Clave&lt;/label&gt;&lt;br&gt;</span>
+<span class="x">&lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;&lt;br&gt;&lt;br&gt;</span>
+
+<span class="x">&lt;button type=&quot;submit&quot;&gt;Login&lt;/button&gt;</span>
+
+<span class="x">&lt;/form&gt;</span>
+</code></pre></div>
+
+<p>Además hay que agregar las siguientes columnas <code>failed_attempts</code> y <code>last_attempt</code> a la tabla <code>participantes</code> para que el login seguro funcione:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">participantes</span><span class="w"> </span>
+<span class="k">ADD</span><span class="w"> </span><span class="n">failed_attempts</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="k">ADD</span><span class="w"> </span><span class="n">last_attempt</span><span class="w"> </span><span class="n">DATETIME</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</code></pre></div>
+
+<hr />
+<h3 id="mitigacion-1-uso-de-contrasenas-hasheadas">Mitigación 1 - Uso de contraseñas hasheadas<a class="headerlink" href="#mitigacion-1-uso-de-contrasenas-hasheadas" title="Permanent link">&para;</a></h3>
+<p>Código aplicado:</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$hash = password_hash($password, PASSWORD_DEFAULT);</span>
+</code></pre></div>
+
+<p>Explicación:</p>
+<p>Esto evita almacenar contraseñas en texto plano.</p>
+<hr />
+<h3 id="mitigacion-2-consultas-preparadas">Mitigación 2 - Consultas preparadas<a class="headerlink" href="#mitigacion-2-consultas-preparadas" title="Permanent link">&para;</a></h3>
+<p>Código aplicado:</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$stmt = $conn-&gt;prepare(&quot;SELECT clave,failed_attempts,last_attempt FROM participantes WHERE usuario=?&quot;);</span>
+<span class="x">$stmt-&gt;bind_param(&quot;s&quot;, $username);</span>
+<span class="x">$stmt-&gt;execute();</span>
+</code></pre></div>
+
+<p>Explicación:</p>
+<p>Evita ataques de inyección SQL.</p>
+<hr />
+<h3 id="mitigacion-3-bloqueo-de-ataques-de-fuerza-bruta-y-diccionarios">Mitigación 3 - Bloqueo de ataques de fuerza bruta y diccionarios<a class="headerlink" href="#mitigacion-3-bloqueo-de-ataques-de-fuerza-bruta-y-diccionarios" title="Permanent link">&para;</a></h3>
+<p><strong>Comprobar intentos fallidos</strong></p>
+<p>Código aplicado:</p>
+<div class="codehilite"><pre><span></span><code><span class="x">if($failed_attempts &gt;= 3 &amp;&amp; $last_attempt != NULL){);</span>
+</code></pre></div>
+
+<p>Explicación:</p>
+<p>Si hay 3 o más intentos, posible bloqueo.</p>
+<p><strong>Calcular tiempo desde el último intento</strong></p>
+<p>Código aplicado:</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$current_time = time();</span>
+<span class="x">$interval = $current_time - strtotime($last_attempt);</span>
+</code></pre></div>
+
+<p>Explicación:</p>
+<p>Convierte la fecha de BD a timestamp y calcula diferencia.</p>
+<p><strong>Bloquear durante 15 minutos (900 segundos)</strong></p>
+<p>Código aplicado:</p>
+<div class="codehilite"><pre><span></span><code><span class="x">if($interval &lt; 900){</span>
+<span class="x">    $message = &quot;Cuenta bloqueada temporalmente&quot;;</span>
+<span class="x">    $blocked = true;</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<p>Explicación:</p>
+<p>Si no han pasado 15 min, cuenta bloqueada.</p>
+<p><strong>Si no está bloqueado verificar contraseña</strong></p>
+<p>Código aplicado:</p>
+<div class="codehilite"><pre><span></span><code><span class="x">if(!$blocked){</span>
+</code></pre></div>
+
+<p>Explicación:</p>
+<ul>
+<li><strong>Caso 1:</strong> Login correcto</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="x">if(password_verify($password, $hash)){</span>
+</code></pre></div>
+
+<p>Si la contraseña es correcta, reinicia contador y quita bloqueo.  </p>
+<div class="codehilite"><pre><span></span><code><span class="x">$reset = $conn-&gt;prepare(&quot;UPDATE participantes SET failed_attempts=0,last_attempt=NULL WHERE usuario=?&quot;);</span>
+</code></pre></div>
+
+<ul>
+<li><strong>Caso 2:</strong> Login incorrecto  </li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="x">$failed_attempts++;</span>
+</code></pre></div>
+
+<p>Suma un intento fallido y guarda número de intentos con hora del intento.</p>
+<div class="codehilite"><pre><span></span><code><span class="x">$update = $conn-&gt;prepare(&quot;UPDATE participantes SET failed_attempts=?, last_attempt=NOW() WHERE usuario=?&quot;);</span>
+</code></pre></div>
+
+<hr />
+<h2 id="34-creacion-segura-de-usuarios">3.4 Creación segura de usuarios<a class="headerlink" href="#34-creacion-segura-de-usuarios" title="Permanent link">&para;</a></h2>
+<p>Para poder utilizar el sistema de autenticación seguro es necesario almacenar las contraseñas utilizando hash criptográfico en lugar de texto plano. </p>
+<p>Para ello se ha desarrollado el archivo <code>agregar_usuario.php</code>, que permite registrar nuevos usuarios utilizando la función <code>password_hash()</code> de PHP. Esta función genera un hash seguro utilizando el algoritmo <strong>bcrypt</strong>, lo que impide recuperar la contraseña original incluso si un atacante accede a la base de datos.</p>
+<p><img alt="PHP3" src="../images/apartado_tres/crear_usuario.png" /></p>
+<p><strong><code>agregar_usuario.php</code></strong></p>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// ACTIVAR ERRORES</span>
+<span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+
+<span class="c1">// CONEXIÓN A LA BASE DE DATOS</span>
+<span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">,</span><span class="s2">&quot;root&quot;</span><span class="p">,</span><span class="s2">&quot;tiger&quot;</span><span class="p">,</span><span class="s2">&quot;jugadores&quot;</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">){</span>
+    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Error de conexión: &quot;</span><span class="o">.</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nv">$message</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="c1">// CREAR USUARIO</span>
+<span class="k">if</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">]</span><span class="o">===</span><span class="s2">&quot;POST&quot;</span><span class="p">){</span>
+
+<span class="nv">$username</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]);</span>
+<span class="nv">$password</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">];</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$username</span><span class="o">!==</span><span class="s2">&quot;&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">$password</span><span class="o">!==</span><span class="s2">&quot;&quot;</span><span class="p">){</span>
+
+<span class="c1">// GENERAR HASH DE CONTRASEÑA</span>
+<span class="nv">$hash</span> <span class="o">=</span> <span class="nb">password_hash</span><span class="p">(</span><span class="nv">$password</span><span class="p">,</span> <span class="nx">PASSWORD_DEFAULT</span><span class="p">);</span>
+
+<span class="c1">// CONSULTA PREPARADA</span>
+<span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;INSERT INTO participantes (usuario, clave) VALUES (?,?)&quot;</span><span class="p">);</span>
+
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;ss&quot;</span><span class="p">,</span><span class="nv">$username</span><span class="p">,</span><span class="nv">$hash</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">()){</span>
+
+<span class="nv">$message</span><span class="o">=</span><span class="s2">&quot;Usuario creado correctamente&quot;</span><span class="p">;</span>
+
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+
+<span class="nv">$message</span><span class="o">=</span><span class="s2">&quot;Error al crear usuario&quot;</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+
+<span class="nv">$message</span><span class="o">=</span><span class="s2">&quot;Debe introducir usuario y contraseña&quot;</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+
+<span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">&lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<span class="x">&lt;title&gt;Crear usuario&lt;/title&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+
+<span class="x">&lt;body&gt;</span>
+
+<span class="x">&lt;h1&gt;Registro de usuario&lt;/h1&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">if</span><span class="p">(</span><span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+<span class="x">&lt;p&gt;</span><span class="cp">&lt;?</span><span class="o">=</span><span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$message</span><span class="p">)</span><span class="cp">?&gt;</span><span class="x">&lt;/p&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
+
+<span class="x">&lt;form method=&quot;post&quot;&gt;</span>
+
+<span class="x">&lt;label&gt;Usuario&lt;/label&gt;&lt;br&gt;</span>
+<span class="x">&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;&lt;br&gt;&lt;br&gt;</span>
+
+<span class="x">&lt;label&gt;Clave&lt;/label&gt;&lt;br&gt;</span>
+<span class="x">&lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;&lt;br&gt;&lt;br&gt;</span>
+
+<span class="x">&lt;button type=&quot;submit&quot;&gt;Crear usuario&lt;/button&gt;</span>
+
+<span class="x">&lt;/form&gt;</span>
+
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</code></pre></div>
+
+<p>Prueba creación nuevo usuario:</p>
+<p><img alt="USER" src="../images/apartado_tres/usuario_joaquin.png" /></p>
+<hr />
+<h2 id="35-bateria-de-pruebas">3.5 Batería de pruebas<a class="headerlink" href="#35-bateria-de-pruebas" title="Permanent link">&para;</a></h2>
+<p>Tras aplicar las mitigaciones se realizaron varias pruebas para comprobar el comportamiento de la aplicación.</p>
+<p><strong>Prueba 1 - Contraseña incorrecta</strong></p>
+<ul>
+<li>Objetivo de la prueba: verificar que el sistema detecta credenciales incorrectas.</li>
+<li>Resultado esperado: el sistema debe mostrar el mensaje "Contraseña incorrecta" y registrar el intento fallido.</li>
+<li>Resultado observado: la aplicación muestra el mensaje correctamente y aumenta el contador de intentos fallidos.</li>
+</ul>
+<p><img alt="PRUEBA1" src="../images/apartado_tres/prueba1.png" /></p>
+<hr />
+<p><strong>Prueba 2 - Bloqueo de cuenta por intentos fallidos</strong></p>
+<ul>
+<li>Objetivo de la prueba: comprobar que el sistema bloquea temporalmente la cuenta tras varios intentos fallidos..</li>
+<li>Resultado esperado: el sistema debe bloquear la cuenta durante 15 minutos y mostrar el mensaje "Cuenta bloqueada temporalmente".</li>
+<li>Resultado observado: la cuenta queda bloqueada correctamente tras los intentos fallidos y se muestra el mensaje esperado.</li>
+</ul>
+<p><img alt="PRUEBA2" src="../images/apartado_tres/prueba2.png" /></p>
+<hr />
+<p><strong>Prueba 3 - Intento de SQL Injection</strong></p>
+<p>Payload: <code>' OR '1'='1' --</code>.</p>
+<ul>
+<li>Objetivo de la prueba: comprobar que el sistema es resistente a ataques de inyección SQL.</li>
+<li>Resultado esperado: el sistema no debe permitir el acceso y debe tratar la entrada como un valor literal.</li>
+<li>Resultado observado: el acceso es rechazado correctamente y no se produce la inyección SQL.</li>
+</ul>
+<p><img alt="PRUEBA3" src="../images/apartado_tres/prueba3.png" /></p>
+<hr />
+<p><strong>Prueba 4 - Intento de acceso durante el bloqueo</strong></p>
+<p>Acción realizada: intentar iniciar sesión con la contraseña correcta después de que la cuenta haya sido bloqueada.</p>
+<ul>
+<li>Objetivo de la prueba: verificar que el bloqueo se aplica incluso con credenciales válidas.</li>
+<li>Resultado esperado: el sistema debe impedir el acceso y mostrar el mensaje de cuenta bloqueada.</li>
+<li>Resultado observado: el acceso es rechazado correctamente mientras dura el periodo de bloqueo.</li>
+</ul>
+<p><img alt="PRUEBA4A" src="../images/apartado_tres/prueba4a.png" /></p>
+<p>Tengo la clave guardada pero hasta 15 minutos después de las 14:17 no me deja entrar con mis credenciales correctas.</p>
+<p><img alt="PRUEBA4B" src="../images/apartado_tres/prueba4b.png" />
+<img alt="PRUEBA4C" src="../images/apartado_tres/prueba4c.png" /></p>
+<p>Aquí ya se ve como puedo entrar después del tiempo programado de bloqueo.</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
