@@ -43,7 +43,7 @@ Se crea un proyecto en Node.js e instalo librerías con versiones conocidas por 
 
 ![NODEJS2](./images/apartado_cuatro/nodejs2.png)
 
-Al instalarlo crea un archivo package-lock.json con todas las dependencias que utiliza, lo modifico para que no nos aparezcan tantos resultados, lo dejo sólo con los paquetes principales:
+Al instalarlo crea un archivo `package-lock.json` con todas las dependencias que utiliza, lo modifico para que no nos aparezcan tantos resultados, lo dejo sólo con los paquetes principales:
 
 ![PLJ](./images/apartado_cuatro/pljson.png)
 
@@ -79,7 +79,7 @@ Al instalarlo crea un archivo package-lock.json con todas las dependencias que u
 }
 ```
 
-Posteriormente se ejecuta la herramienta Dependency-Check:
+Posteriormente se ejecuta la herramienta Dependency-Check que al general el archvo dependency-check-report.hmtl que inspeccionaré en el siguiente apartado.
 
 ![ODC2](./images/apartado_cuatro/odc2.png)
 
