@@ -43,9 +43,7 @@ Se crea un proyecto en Node.js e instalamos librerías con versiones conocidas p
 
 ![NODEJS2](./images/apartado_cuatro/nodejs2.png)
 
-Además nos crea un archivo package-lock.json con todas las dependencias que utiliza.
-
-Nosotros lo vamos a modificar para que no nos aparezcan tantos resultados, lo dejaremos sólo con los paquetes principales:
+Al instalarlo crea un archivo package-lock.json con todas las dependencias que utiliza, lo modifico para que no nos aparezcan tantos resultados, lo dejo sólo con los paquetes principales:
 
 ![PLJ](./images/apartado_cuatro/pljson.png)
 
