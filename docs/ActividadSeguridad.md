@@ -79,6 +79,8 @@ Al instalarlo crea un archivo package-lock.json con todas las dependencias que u
 }
 ```
 
+Posteriormente se ejecuta la herramienta Dependency-Check:
+
 ![ODC2](./images/apartado_cuatro/odc2.png)
 
 ![ODC3](./images/apartado_cuatro/odc3.png)
