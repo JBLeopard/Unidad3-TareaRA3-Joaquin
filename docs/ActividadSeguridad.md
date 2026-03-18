@@ -47,7 +47,7 @@ Además nos crea un archivo package-lock.json con todas las dependencias que uti
 
 Nosotros lo vamos a modificar para que no nos aparezcan tantos resultados, lo dejaremos sólo con los paquetes principales:
 
-[PLJ](./images/apartado_cuatro/pljson.png)
+![PLJ](./images/apartado_cuatro/pljson.png)
 
 
 **`package-lock.json`**
@@ -81,9 +81,9 @@ Nosotros lo vamos a modificar para que no nos aparezcan tantos resultados, lo de
 }
 ```
 
-[ODC2](./images/apartado_cuatro/odc2.png)
+![ODC2](./images/apartado_cuatro/odc2.png)
 
-[ODC3](./images/apartado_cuatro/odc3.png)
+![ODC3](./images/apartado_cuatro/odc3.png)
 
 
 ---
@@ -122,15 +122,15 @@ A continuación muestro las soluciones aplicadas.
 
 ### Mitigación 1 - Actualización de dependencias
 
-[MIT1](./images/apartado_cuatro/mit1.png)
+![MIT1](./images/apartado_cuatro/mit1.png)
 
 
 
 ### Mitigación 2 - Auditoría y verificación de seguridad
 
 
-[MIT2](./images/apartado_cuatro/mit2.png)
-[MIT3](./images/apartado_cuatro/mit3.png)
+![MIT2](./images/apartado_cuatro/mit2.png)
+![MIT3](./images/apartado_cuatro/mit3.png)
 
 ---
 
