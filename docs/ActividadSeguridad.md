@@ -97,7 +97,7 @@ El informe muestra múltiples dependencias con vulnerabilidades, por ejemplo:
 - Vulnerabilidad: ***Prototype Pollution***
 - Severidad: Alta (CVSS ~7.4)
 
-Estas vulnerabilidades pueden permitir ejecución de código no autorizado, Manipulación de objetos en la aplicación y fugas de información sensible.
+Estas vulnerabilidades pueden permitir ejecución de código no autorizado, manipulación de objetos en la aplicación y fugas de información sensible.
 
 ![ODC4](./images/apartado_cuatro/odc4.png)
 ![ODC5](./images/apartado_cuatro/odc5.png)
