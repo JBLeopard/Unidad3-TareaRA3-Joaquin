@@ -17,7 +17,7 @@ A continuación muestro la instalación de la herramienta de código abierto de 
 
 ### Instalación OWASP Dependency-Check
 
-[ODC1](./images/apartado_cuatro/odc1.png)
+![ODC1](./images/apartado_cuatro/odc1.png)
 
 ---
 
