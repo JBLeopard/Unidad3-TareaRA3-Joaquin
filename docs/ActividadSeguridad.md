@@ -17,7 +17,7 @@ A continuación muestro la instalación de la herramienta de código abierto de 
 
 ### Instalación OWASP Dependency-Check
 
-![ODC](./images/apartado_cuatro/odc.png)
+[ODC1](./images/apartado_cuatro/odc1.png)
 
 ---
 
@@ -42,8 +42,6 @@ Para verificar vulnerabilidades en las dependencias de un proyecto basado en Nod
 Se crea un proyecto en Node.js e instalamos librerías con versiones conocidas por contener vulnerabilidades.
 
 ![NODEJS2](./images/apartado_cuatro/nodejs2.png)
-
-[ODC1](./images/apartado_cuatro/odc1.png)
 
 Además nos crea un archivo package-lock.json con todas las dependencias que utiliza.
 
