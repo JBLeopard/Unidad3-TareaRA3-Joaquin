@@ -39,7 +39,7 @@ Para verificar vulnerabilidades en las dependencias de un proyecto basado en Nod
 
 ### Estado inicial y vulnerabilidad
 
-Se crea un proyecto en Node.js e instalamos librerías con versiones conocidas por contener vulnerabilidades.
+Se crea un proyecto en Node.js e instalo librerías con versiones conocidas por contener vulnerabilidades, se aprecia que se detectan en la instalación.
 
 ![NODEJS2](./images/apartado_cuatro/nodejs2.png)
 
